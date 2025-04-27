@@ -1,16 +1,17 @@
-const path = require('path')
-const fs = require('fs')
+import path from 'path'
+import fs from 'fs'
 
-const { serialize, deserialize } = require("./serialization")
-const { compress, decompress } = require("./zip")
-const { encrypt, decrypt } = require("./crypt")
+import { save } from './types'
+import { serialize, deserialize } from './serialization'
+import { compress, decompress } from './zip'
+import { encrypt, decrypt } from './crypt'
 
-async function unpack(source) {
+export async function unpack(source: Buffer): Promise<save.Data> {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const decrypted = await decrypt(source)
 			const decompressed = await decompress(decrypted)
-			const data = await deserialize(decompressed)
+			const data = await deserialize(decompressed.toString('utf8'))
 
 			return resolve(data)
 		}
@@ -20,11 +21,11 @@ async function unpack(source) {
 	})
 }
 
-async function pack(data) {
+export async function pack(data: save.Data): Promise<Buffer> {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const serialized = await serialize(data)
-			const compressed = await compress(serialized)
+			const compressed = await compress(Buffer.from(serialized, 'utf8'))
 			const encrypted = await encrypt(compressed)
 
 			return resolve(encrypted)
@@ -35,7 +36,7 @@ async function pack(data) {
 	})
 }
 
-async function load(filename) {
+export async function load(filename: string): Promise<save.Data> {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const source = fs.readFileSync(path.resolve(filename))
@@ -49,7 +50,7 @@ async function load(filename) {
 	})
 }
 
-async function save(filename, data) {
+export async function save(filename: string, data: save.Data): Promise<void> {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const content = await pack(data)
@@ -63,9 +64,3 @@ async function save(filename, data) {
 	})
 }
 
-module.exports = {
-	pack,
-	unpack,
-	load,
-	save,
-}

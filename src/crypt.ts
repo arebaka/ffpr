@@ -1,5 +1,5 @@
-const crypto = require('crypto')
-const Rijndael = require('rijndael-js')
+import crypto from 'crypto'
+import Rijndael from 'rijndael-js'
 
 const password = 'TKX73OHHK1qMonoICbpVT0hIDGe7SkW0'
 const salt = '71Ba2p0ULBGaE6oJ7TjCqwsls1jBKmRL'
@@ -8,7 +8,7 @@ const generator = crypto.pbkdf2Sync(password, salt, 10, 64, 'sha1')
 const key = generator.slice(0, 32)
 const iv = generator.slice(32, 64)
 
-async function encrypt(input) {
+export async function encrypt(input: Buffer): Promise<Buffer> {
 	return new Promise((resolve, reject) => {
 		try {
 			const cipher = new Rijndael(key, 'cbc')
@@ -17,7 +17,7 @@ async function encrypt(input) {
 			const padLength = blockSize - (input.length % blockSize)
 
 			const padded = Buffer.concat([input, Buffer.alloc(padLength)])
-			const encrypted = cipher.encrypt(padded, 256, iv)
+			const encrypted = cipher.encrypt(padded, '256', iv)
 
 			return resolve(Buffer.from(encrypted))
 		}
@@ -27,11 +27,11 @@ async function encrypt(input) {
 	})
 }
 
-async function decrypt(input) {
+export async function decrypt(input: Buffer): Promise<Buffer> {
 	return new Promise((resolve, reject) => {
 		try {
 			const cipher = new Rijndael(key, 'cbc')
-			const decrypted = Buffer.from(cipher.decrypt(input, 256, iv))
+			const decrypted = Buffer.from(cipher.decrypt(input, '256', iv))
 
 			// remove extra zero padding
 			let end = decrypted.length
@@ -47,9 +47,4 @@ async function decrypt(input) {
 			return reject(e)
 		}
 	})
-}
-
-module.exports = {
-	encrypt,
-	decrypt,
 }

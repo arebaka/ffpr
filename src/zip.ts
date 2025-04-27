@@ -1,8 +1,8 @@
-const zlib = require('zlib')
+import zlib from 'zlib'
 
-async function compress(input) {
+export async function compress(input: Buffer): Promise<Buffer> {
 	return new Promise((resolve, reject) => {
-		zlib.deflateRaw(Buffer.from(input, 'utf8'), (error, result) => {
+		zlib.deflateRaw(input, (error, result) => {
 			if (error) {
 				return reject(error)
 			}
@@ -11,7 +11,7 @@ async function compress(input) {
 	})
 }
 
-async function decompress(input) {
+export async function decompress(input: Buffer): Promise<Buffer> {
 	return new Promise((resolve, reject) => {
 		zlib.inflateRaw(input, (error, result) => {
 			if (error) {
@@ -27,9 +27,4 @@ async function decompress(input) {
 			}
 		})
 	})
-}
-
-module.exports = {
-	compress,
-	decompress,
 }
