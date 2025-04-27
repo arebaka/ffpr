@@ -1,6 +1,7 @@
 export namespace save {
+	export type Type = 'Switch'|'PC'|'PlayStation'
 	export type Keys = number[]
-	export type Value = string|number|boolean|null|Buffer|Array<Value>|{[key: string]: Value}
+	export type Value = string|number|boolean|Buffer|Array<Value>|{[key: string]: Value}
 
 	export namespace master {
 		export type Picture = Buffer
@@ -65,7 +66,7 @@ export namespace save {
 						addtionalDefenseCount: number
 						addtionalMagicDefenseCount: number
 						currentConditionList: {
-							target: unknown[]
+							target: number[]
 						}
 					}
 					commandList: {
@@ -110,15 +111,21 @@ export namespace save {
 						target: number[]
 					}
 					sortOrderOwnedAbilityIds: {
-						target: unknown[]
+						target: number[]
 					}
 					abilityDictionary: {
 						keys: Keys
-						values: unknown[]
+						values: {
+							target: {
+								abilityId: number
+								contentId: number
+								skillLevel: number
+							}
+						}[]
 					}
 					skillLevelTargets: {
 						keys: Keys
-						values: unknown[]
+						values: number[]
 					}
 					learningAbilitys: {
 						target: number[]
@@ -179,7 +186,7 @@ export namespace save {
 				target: unknown[]
 			}
 			ownedKeyWaordList: {
-				target: unknown[]
+				target: number[]
 			}
 			ownedMagicList: {
 				target: number[]
@@ -299,7 +306,7 @@ export namespace save {
 		isCompleteFlag: number
 	}
 
-	export type Stats = {[key: string]: Value} & {
+	export type Bestiary = {[key: string]: Value} & {
 		scenarioFlags: {
 			target: number[]
 		}
@@ -367,5 +374,5 @@ export namespace save {
 		bgmType: number
 	}
 
-	export type Data = Master|Stats|Config
+	export type Data = Master|Bestiary|Config
 }

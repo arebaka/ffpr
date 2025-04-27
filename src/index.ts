@@ -6,9 +6,24 @@ import { serialize, deserialize } from './serialization'
 import { compress, decompress } from './zip'
 import { encrypt, decrypt } from './crypt'
 
-export async function unpack(source: Buffer): Promise<save.Data> {
+export async function unpack(source: Buffer, type: save.Type='Switch'): Promise<save.Data> {
 	return new Promise(async (resolve, reject) => {
 		try {
+			if (type == 'PlayStation') {
+				const data = await deserialize(source.toString('utf8'))
+				return resolve(data)
+			}
+
+			if (type == 'PC') {
+				// remove UTF-8 BOM
+				let trimmed = source
+				if (source[0] == 239 && source[1] == 187 && source[2] == 191) {
+					trimmed = trimmed.slice(3)
+				}
+				trimmed = Buffer.concat([trimmed, Buffer.alloc((4 - source.length % 4) % 4, '=')])
+				source = Buffer.from(trimmed.toString('utf8'), 'base64')
+			}
+
 			const decrypted = await decrypt(source)
 			const decompressed = await decompress(decrypted)
 			const data = await deserialize(decompressed.toString('utf8'))
@@ -21,14 +36,22 @@ export async function unpack(source: Buffer): Promise<save.Data> {
 	})
 }
 
-export async function pack(data: save.Data): Promise<Buffer> {
+export async function pack(data: save.Data, type: save.Type='Switch'): Promise<Buffer> {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const serialized = await serialize(data)
-			const compressed = await compress(Buffer.from(serialized, 'utf8'))
-			const encrypted = await encrypt(compressed)
+			const serialized = Buffer.from(await serialize(data), 'utf8')
+			if (type == 'PlayStation') {
+				return resolve(serialized);
+			}
 
-			return resolve(encrypted)
+			const compressed = await compress(serialized)
+			const encrypted = await encrypt(compressed)
+			if (type == 'Switch') {
+				return resolve(encrypted)
+			}
+
+			const based = encrypted.toString('base64')
+			return resolve(Buffer.from(based))
 		}
 		catch (e) {
 			return reject(e)
@@ -36,24 +59,25 @@ export async function pack(data: save.Data): Promise<Buffer> {
 	})
 }
 
-export async function load(filename: string): Promise<save.Data> {
+export async function load(filename: string, type: save.Type='Switch'): Promise<save.Data> {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const source = fs.readFileSync(path.resolve(filename))
-			const data = await unpack(source)
+			const data = await unpack(source, type)
 
 			return resolve(data)
 		}
 		catch (e) {
+			console.log(filename, type)
 			return reject(e)
 		}
 	})
 }
 
-export async function save(filename: string, data: save.Data): Promise<void> {
+export async function save(filename: string, data: save.Data, type: save.Type='Switch'): Promise<void> {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const content = await pack(data)
+			const content = await pack(data, type)
 			fs.writeFileSync(path.resolve(filename), content)
 
 			return resolve()
@@ -64,3 +88,9 @@ export async function save(filename: string, data: save.Data): Promise<void> {
 	})
 }
 
+export default {
+	pack,
+	unpack,
+	load,
+	save,
+}

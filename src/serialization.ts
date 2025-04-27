@@ -9,8 +9,17 @@ const doNotSerializeKeys = [
 async function iterSerialize(data: save.Value, rootKey: string): Promise<string|save.Value> {
 	return new Promise(async (resolve, reject) => {
 		try {
-			if (rootKey == '.pictureData' && Buffer.isBuffer(data)) {
-				return resolve(data.toString('base64'))
+			if (rootKey == '.pictureData') {
+				if (typeof data == 'string') {
+					return resolve(data)
+				}
+				if (Buffer.isBuffer(data)) {
+					return resolve(data.toString('base64'))
+				}
+				if (data instanceof Uint8Array) {
+					return resolve(Buffer.from(data).toString('base64'))
+				}
+				return reject("serialize: Invalid picture data")
 			}
 			if (Buffer.isBuffer(data)) {
 				return resolve(data.toString('base64'))
