@@ -1,30 +1,19 @@
 import zlib from 'zlib'
 
+import { promisify } from 'util'
+
+const deflateRaw = promisify(zlib.deflateRaw)
+const inflateRaw = promisify(zlib.inflateRaw)
+const inflate = promisify(zlib.inflate)
+
 export async function compress(input: Buffer): Promise<Buffer> {
-	return new Promise((resolve, reject) => {
-		zlib.deflateRaw(input, (error, result) => {
-			if (error) {
-				return reject(error)
-			}
-			return resolve(result)
-		})
-	})
+	return deflateRaw(input)
 }
 
 export async function decompress(input: Buffer): Promise<Buffer> {
-	return new Promise((resolve, reject) => {
-		zlib.inflateRaw(input, (error, result) => {
-			if (error) {
-				zlib.inflate(input, (error, result) => {
-					if (error) {
-						return reject(error)
-					}
-					return resolve(result)
-				})
-			}
-			else {
-				return resolve(result)
-			}
-		})
-	})
+	try {
+		return inflateRaw(input)
+	} catch (error) {
+		return inflate(input)
+	}
 }

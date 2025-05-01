@@ -120,7 +120,7 @@ export namespace save {
 								abilityId: number
 								contentId: number
 								skillLevel: number
-							}
+							}[]
 						}[]
 					}
 					skillLevelTargets: {
