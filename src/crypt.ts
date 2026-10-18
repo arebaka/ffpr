@@ -1,10 +1,10 @@
-import crypto from 'crypto'
+import { pbkdf2Sync } from 'node:crypto'
 import Rijndael from 'rijndael-js'
 
-const password = 'TKX73OHHK1qMonoICbpVT0hIDGe7SkW0'
-const salt = '71Ba2p0ULBGaE6oJ7TjCqwsls1jBKmRL'
+const PASSWORD = 'TKX73OHHK1qMonoICbpVT0hIDGe7SkW0'
+const SALT = '71Ba2p0ULBGaE6oJ7TjCqwsls1jBKmRL'
 
-const generator = crypto.pbkdf2Sync(password, salt, 10, 64, 'sha1')
+const generator = pbkdf2Sync(PASSWORD, SALT, 10, 64, 'sha1')
 const key = generator.slice(0, 32)
 const iv = generator.slice(32, 64)
 
@@ -26,7 +26,7 @@ export async function decrypt(input: Buffer): Promise<Buffer> {
 
 	// remove extra zero padding
 	let end = decrypted.length
-	while (end > 0 && decrypted[end - 1] == 0) {
+	while (end > 0 && decrypted[end - 1] === 0) {
 		--end
 	}
 	const unpadded = decrypted.slice(0, end + 1)

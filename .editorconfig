@@ -9,13 +9,13 @@ tab_width = 4
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[{**.yml,**.yaml}]
-indent_style = space
-indent_size = 2
+[**.txt]
+trim_trailing_whitespace = false
+insert_final_newline = false
 
 [{**.markdown,**.md}]
 trim_trailing_whitespace = false
 
-[**.txt]
-trim_trailing_whitespace = false
-insert_final_newline = false
+[{**.yaml,**.yml}]
+indent_style = space
+indent_size = 2

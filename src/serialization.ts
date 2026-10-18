@@ -1,4 +1,4 @@
-import { save } from './types'
+import type { Data, Value } from './types'
 
 const doNotSerializeKeys = [
 	'.userData.ownedTransportationList.target[].position',
@@ -6,9 +6,9 @@ const doNotSerializeKeys = [
 	'.mapData.playerEntity.position',
 ]
 
-async function iterSerialize(data: save.Value, rootKey: string): Promise<string|save.Value> {
-	if (rootKey == '.pictureData') {
-		if (typeof data == 'string') {
+async function iterSerialize(data: Value, rootKey: string): Promise<string | Value> {
+	if (rootKey === '.pictureData') {
+		if (typeof data === 'string') {
 			return data
 		}
 		if (Buffer.isBuffer(data)) {
@@ -17,63 +17,60 @@ async function iterSerialize(data: save.Value, rootKey: string): Promise<string|
 		if (data instanceof Uint8Array) {
 			return Buffer.from(data).toString('base64')
 		}
-		throw new Error("serialize: Invalid picture data")
+		throw new Error('serialize: Invalid picture data')
 	}
+
 	if (Buffer.isBuffer(data)) {
 		return data.toString('base64')
 	}
-
-	if (!(typeof data == 'object') || doNotSerializeKeys.includes(rootKey) || data == null) {
-		return data as save.Value
+	if (!(typeof data === 'object') || doNotSerializeKeys.includes(rootKey) || data == null) {
+		return data as Value
 	}
 
-	data = structuredClone(data)
-	if (Array.isArray(data)) {
-		await Promise.all(data.map(async (v, i, a) => {
-			const newRootKey = rootKey + '[]'
-			a[i] = await iterSerialize(v, newRootKey)
-		}))
-		return data
+	const output = structuredClone(data)
+	if (Array.isArray(output)) {
+		await Promise.all(output.map(
+			async (v, i, a) => a[i] = await iterSerialize(v, `${rootKey}[]`)
+		))
+		return output
 	}
-
-	for (let key in data) {
-		const newRootKey = rootKey + '.' + key
-		data[key] = await iterSerialize(data[key], newRootKey)
-	}
-	return JSON.stringify(data)
+	// not array
+	await Promise.all(Object.entries(output).map(
+		async ([k, v]) => output[k] = await iterSerialize(v, `${rootKey}.${k}`)
+	))
+	return JSON.stringify(output)
 }
 
-export async function serialize(data: save.Data): Promise<string> {
+export async function serialize(data: Data): Promise<string> {
 	return iterSerialize(data, '') as Promise<string>
 }
 
-async function iterDeserialize(input: string|save.Value, rootKey: string): Promise<save.Value> {
+async function iterDeserialize(input: string|Value, rootKey: string): Promise<Value> {
 	try {
-		if (rootKey == '.pictureData' && typeof input == 'string') {
+		if (rootKey === '.pictureData' && typeof input === 'string') {
 			const picture = Buffer.from(input, 'base64')
 			return picture
 		}
 
 		if (Buffer.isBuffer(input)) {
-			const data: save.Value = JSON.parse(input.toString('utf8'))
+			const data: Value = JSON.parse(input.toString('utf8'))
 			return iterDeserialize(data, rootKey)
 		}
-		if (typeof input == 'string') {
-			const data: save.Value = JSON.parse(input)
+		if (typeof input === 'string') {
+			const data: Value = JSON.parse(input)
 			return iterDeserialize(data, rootKey)
 		}
 
-		if (typeof input == 'object' && input != null) {
+		if (typeof input === 'object' && input != null) {
 			const data = structuredClone(input)
 			if (Array.isArray(data)) {
 				await Promise.all(data.map(
-					async (v, i, a) => a[i] = await iterDeserialize(v, rootKey + '[]')
+					async (v, i, a) => a[i] = await iterDeserialize(v, `${rootKey}[]`)
 				))
-			}
-			else {
-				for (let key in data) {
-					data[key] = await iterDeserialize(data[key], rootKey + '.' + key)
-				}
+			} else {
+				await Promise.all(Object.entries(data).map(
+					async ([k, v]) => data[k] = await iterDeserialize(v, `${rootKey}.${k}`)
+				))
 			}
 			return data
 		}
@@ -82,13 +79,13 @@ async function iterDeserialize(input: string|save.Value, rootKey: string): Promi
 	}
 	catch (e) {
 		// if the string is not JSON
-		if (typeof input == 'string') {
+		if (typeof input === 'string') {
 			return input
 		}
 		throw e
 	}
 }
 
-export async function deserialize(input: string): Promise<save.Data> {
-	return iterDeserialize(input, '') as Promise<save.Data>
+export async function deserialize(input: string): Promise<Data> {
+	return iterDeserialize(input, '') as Promise<Data>
 }

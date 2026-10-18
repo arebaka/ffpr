@@ -1,17 +1,19 @@
 {
   "name": "ffpr",
   "version": "0.3.1",
-  "description": "Save editor for games of Final Fantasy Pixel Remaster",
+  "description": "save editor for games of Final Fantasy Pixel Remaster",
   "license": "MIT",
   "author": "arelive <me@are.moe> (https://are.moe)",
   "repository": "github:arebaka/ffpr",
   "homepage": "https://github.com/arebaka/ffpr",
+  "type": "commonjs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "lint": "eslint .",
     "test": ":",
-    "lint": "npx eslint .",
-    "build": "npx tsc"
+    "build": "npx tsc",
+    "clean": "rm -rf dist"
   },
   "bugs": {
     "url": "https://github.com/arebaka/ffpr/issues"
