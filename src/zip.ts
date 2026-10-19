@@ -1,14 +1,14 @@
-import { promisify } from 'node:util'
-import { deflateRaw, inflate, inflateRaw } from 'node:zlib'
+import { promisify } from 'node:util';
+import { deflateRaw, inflate, inflateRaw } from 'node:zlib';
 
-export async function compress(input: Buffer): Promise<Buffer> {
-	return promisify(deflateRaw)(input)
+export function compress(input: Buffer): Promise<Buffer> {
+	return promisify(deflateRaw)(input);
 }
 
-export async function decompress(input: Buffer): Promise<Buffer> {
+export function decompress(input: Buffer): Promise<Buffer> {
 	try {
-		return promisify(inflateRaw)(input)
+		return promisify(inflateRaw)(input);
 	} catch {
-		return promisify(inflate)(input)
+		return promisify(inflate)(input);
 	}
 }

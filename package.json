@@ -1,45 +1,59 @@
 {
-  "name": "ffpr",
-  "version": "0.3.1",
-  "description": "save editor for games of Final Fantasy Pixel Remaster",
-  "license": "MIT",
-  "author": "arelive <me@are.moe> (https://are.moe)",
-  "repository": "github:arebaka/ffpr",
-  "homepage": "https://github.com/arebaka/ffpr",
-  "type": "commonjs",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "lint": "eslint .",
-    "test": ":",
-    "build": "npx tsc",
-    "clean": "rm -rf dist"
-  },
-  "bugs": {
-    "url": "https://github.com/arebaka/ffpr/issues"
-  },
-  "funding": {
-    "type": "patreon",
-    "url": "https://www.patreon.com/arelive"
-  },
-  "keywords": [
-    "final",
-    "fantasy",
-    "pixel",
-    "remaster",
-    "ffpr",
-    "save",
-    "editor"
-  ],
-  "dependencies": {
-    "rijndael-js": "^2.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^22.15.2",
-    "@types/rijndael-js": "^1.0.2",
-    "@typescript-eslint/eslint-plugin": "^8.31.0",
-    "@typescript-eslint/parser": "^8.31.0",
-    "eslint": "^9.25.1",
-    "typescript": "^5.8.3"
-  }
+	"name": "ffpr",
+	"version": "0.3.1",
+	"description": "save editor for games of Final Fantasy Pixel Remaster",
+	"keywords": [
+		"editor",
+		"fantasy",
+		"ffpr",
+		"final",
+		"pixel",
+		"remaster",
+		"save"
+	],
+	"homepage": "https://github.com/arebaka/ffpr",
+	"bugs": "https://github.com/arebaka/ffpr/issues",
+	"license": "MIT",
+	"author": "arelive <me@are.moe> (https://are.moe)",
+	"repository": "github:arebaka/ffpr",
+	"funding": {
+		"type": "patreon",
+		"url": "https://www.patreon.com/arelive"
+	},
+	"type": "commonjs",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"lint": "oxlint",
+		"lint:fix": "oxlint --fix",
+		"format": "oxfmt --check",
+		"format:write": "oxfmt --write",
+		"test": ":",
+		"check": "tsc --noEmit && bun run lint && bun run format && bun run test",
+		"clean": "rm -rf dist",
+		"build": "bun run clean && tsc",
+		"prepublishOnly": "bun run check && bun run build"
+	},
+	"dependencies": {
+		"rijndael-js": "^2.0.0"
+	},
+	"devDependencies": {
+		"@stylistic/eslint-plugin": "^5.10.0",
+		"@types/node": "^22.15.2",
+		"@types/rijndael-js": "^1.0.2",
+		"@typescript-eslint/eslint-plugin": "^8.31.0",
+		"@typescript-eslint/parser": "^8.31.0",
+		"eslint-plugin-json": "^5.0.0",
+		"eslint-plugin-perfectionist": "^5.12.1",
+		"eslint-plugin-regexp": "^3.3.1",
+		"eslint-plugin-security": "^4.2.0",
+		"eslint-plugin-sonarjs": "^4.2.2",
+		"eslint-plugin-testing-library": "^7.16.2",
+		"eslint-plugin-yml": "^3.9.0",
+		"oxfmt": "^0.73.0",
+		"oxlint": "^1.88.0",
+		"oxlint-tsgolint": "^7.0.2004",
+		"typescript": "^5.8.3"
+	},
+	"packageManager": "bun"
 }

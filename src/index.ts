@@ -1,66 +1,79 @@
-import { readFileSync, writeFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { readFileSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
-import type { Data, Type } from './types'
-import { serialize, deserialize } from './serialization'
-import { compress, decompress } from './zip'
-import { encrypt, decrypt } from './crypt'
+import { decrypt, encrypt } from './crypt';
+import { deserialize, serialize } from './serialization';
+import type { Data, Type } from './types';
+import { compress, decompress } from './zip';
 
-export type * from './types'
+export type * from './types';
 
-export async function unpack(source: Buffer, type: Type='switch'): Promise<Data> {
+export async function unpack(
+	source: Buffer,
+	type: Type = 'switch',
+): Promise<Data> {
 	if (type === 'playstation') {
-		const data = await deserialize(source.toString('utf8'))
-		return data
+		const data = await deserialize(source.toString('utf8'));
+		return data;
 	}
 
 	if (type === 'pc') {
 		// remove UTF-8 BOM
-		let trimmed = source
+		let trimmed = source;
 		if (source[0] === 239 && source[1] === 187 && source[2] === 191) {
-			trimmed = trimmed.slice(3)
+			trimmed = trimmed.subarray(3);
 		}
-		trimmed = Buffer.concat([trimmed, Buffer.alloc((4 - trimmed.length % 4) % 4, '=')])
-		source = Buffer.from(trimmed.toString('utf8'), 'base64')
+		trimmed = Buffer.concat([
+			trimmed,
+			Buffer.alloc((4 - (trimmed.length % 4)) % 4, '='),
+		]);
+		source = Buffer.from(trimmed.toString('utf8'), 'base64');
 	}
 
 	// Switch
-	const decrypted = await decrypt(source)
-	const decompressed = await decompress(decrypted)
-	const data = await deserialize(decompressed.toString('utf8'))
+	const decrypted = decrypt(source);
+	const decompressed = await decompress(decrypted);
+	const data = await deserialize(decompressed.toString('utf8'));
 
-	return data
+	return data;
 }
 
-export async function pack(data: Data, type: Type='switch'): Promise<Buffer> {
-	const serialized = Buffer.from(await serialize(data), 'utf8')
+export async function pack(data: Data, type: Type = 'switch'): Promise<Buffer> {
+	const serialized = Buffer.from(await serialize(data), 'utf8');
 	if (type === 'playstation') {
-		return serialized
+		return serialized;
 	}
 
-	const compressed = await compress(serialized)
-	const encrypted = await encrypt(compressed)
+	const compressed = await compress(serialized);
+	const encrypted = encrypt(compressed);
 	if (type === 'switch') {
-		return encrypted
+		return encrypted;
 	}
 
 	// PC
-	const based = encrypted.toString('base64')
-	const buffer = Buffer.from(based, 'utf8')
+	const based = encrypted.toString('base64');
+	const buffer = Buffer.from(based, 'utf8');
 
 	// add UTF-8 BOM
-	const bom = Buffer.from([0xef, 0xbb, 0xbf])
-	return Buffer.concat([bom, buffer])
+	const bom = Buffer.from([0xef, 0xbb, 0xbf]);
+	return Buffer.concat([bom, buffer]);
 }
 
-export async function load(filename: string, type: Type='switch'): Promise<Data> {
-	const source = readFileSync(resolve(filename))
-	const data = await unpack(source, type)
+export async function load(
+	filename: string,
+	type: Type = 'switch',
+): Promise<Data> {
+	const source = readFileSync(resolve(filename));
+	const data = await unpack(source, type);
 
-	return data
+	return data;
 }
 
-export async function save(filename: string, data: Data, type: Type='switch'): Promise<void> {
-	const content = await pack(data, type)
-	writeFileSync(resolve(filename), content)
+export async function save(
+	filename: string,
+	data: Data,
+	type: Type = 'switch',
+): Promise<void> {
+	const content = await pack(data, type);
+	writeFileSync(resolve(filename), content);
 }

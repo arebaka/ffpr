@@ -45,7 +45,7 @@ The structure is described by TypeScript types:
 import { load } from 'ffpr';
 import type { Master } from 'ffpr';
 
-const data = await load('path/to/save', 'pc') as Master;
+const data = (await load('path/to/save', 'pc')) as Master;
 ```
 
 ## Formats

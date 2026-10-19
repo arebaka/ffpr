@@ -1,0 +1,71 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"plugins": [
+		"import",
+		"promise",
+		"unicorn",
+		"typescript",
+		"eslint",
+		"jsdoc"
+	],
+	"env": {
+		"browser": true,
+		"es2024": true,
+		"node": true
+	},
+	"jsPlugins": [
+		"@stylistic/eslint-plugin",
+		"eslint-plugin-perfectionist",
+		"eslint-plugin-security",
+		"eslint-plugin-sonarjs",
+		"eslint-plugin-regexp",
+		"eslint-plugin-testing-library",
+		"eslint-plugin-json",
+		"eslint-plugin-yml"
+	],
+	"categories": {
+		"correctness": "error",
+		"suspicious": "warn",
+		"pedantic": "warn",
+		"perf": "warn",
+		"style": "off",
+		"restriction": "allow",
+		"nursery": "allow"
+	},
+	"rules": {
+		"arrow-body-style": ["error", "as-needed"],
+		"unicorn/escape-case": "off",
+		"unicorn/number-literal-case": "off",
+		"unicorn/no-hex-escape": "off",
+		"unicorn/prefer-query-selector": "off",
+		"@stylistic/arrow-parens": ["error", "as-needed"]
+	},
+	"options": {
+		"typeAware": true,
+		"typeCheck": true
+	},
+	"settings": {
+		"react": {
+			"version": "19"
+		},
+		"vitest": {
+			"typecheck": false
+		},
+		"jsdoc": {
+			"ignorePrivate": false,
+			"ignoreInternal": false,
+			"ignoreReplacesDocs": true,
+			"overrideReplacesDocs": true,
+			"augmentsExtendsReplacesDocs": false,
+			"implementsReplacesDocs": false,
+			"exemptDestructuredRootsFromChecks": false
+		}
+	},
+	"ignorePatterns": [
+		"dist/**",
+		"node_modules/**",
+		"jspm_packages/**",
+		"templates/switch/sd/**",
+		"templates/psp/ms/**"
+	]
+}

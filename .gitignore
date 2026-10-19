@@ -62,3 +62,6 @@ logs/*
 Session.vim
 Sessionx.vim
 [._]*.un~
+
+# Agents
+.claude
