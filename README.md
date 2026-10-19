@@ -35,7 +35,12 @@ A save file is JSON in which nested objects are stored as JSON strings, several 
 `load` and `unpack` parse them all into a single object tree,
 `save` and `pack` encode them back.
 `pictureData` is decoded from base64 into a `Buffer`.
-Key names are the game's own, typos included (`owendGil` for example).
+
+Key names are exactly as the game writes them, including the developers' typos:
+`owendGil`, `importantOwendItemList`, `owendCrystalFlags`, `ownedKeyWaordList`,
+`numberOfButtles`, `resolutionHight` and others.
+These are not mistakes in the library, do not "fix" them:
+the game will not recognize renamed keys.
 
 The structure is described by TypeScript types:
 `Master` (save slot), `Bestiary` and `Config` (settings).
