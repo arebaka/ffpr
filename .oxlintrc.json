@@ -5,11 +5,11 @@
 		"promise",
 		"unicorn",
 		"typescript",
+		"node",
 		"eslint",
 		"jsdoc"
 	],
 	"env": {
-		"browser": true,
 		"es2024": true,
 		"node": true
 	},
