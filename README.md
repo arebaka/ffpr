@@ -41,15 +41,21 @@ All functions are async. `type` is the platform:
 ```bash
 npm i ffpr
 ```
+
 or
+
 ```bash
 pnpm add ffpr
 ```
+
 or
+
 ```bash
 yarn add ffpr
 ```
+
 or
+
 ```bash
 bun add ffpr
 ```

@@ -21,7 +21,8 @@
 		"eslint-plugin-regexp",
 		"eslint-plugin-testing-library",
 		"eslint-plugin-json",
-		"eslint-plugin-yml"
+		"eslint-plugin-yml",
+		"eslint-plugin-toml"
 	],
 	"categories": {
 		"correctness": "error",
@@ -29,8 +30,8 @@
 		"pedantic": "warn",
 		"perf": "warn",
 		"style": "off",
-		"restriction": "allow",
-		"nursery": "allow"
+		"restriction": "off",
+		"nursery": "off"
 	},
 	"rules": {
 		"arrow-body-style": ["error", "as-needed"],
@@ -38,19 +39,27 @@
 		"unicorn/number-literal-case": "off",
 		"unicorn/no-hex-escape": "off",
 		"unicorn/prefer-query-selector": "off",
-		"@stylistic/arrow-parens": ["error", "as-needed"]
+		"typescript/prefer-nullish-coalescing": "off",
+		"typescript/switch-exhaustiveness-check": [
+			"warn",
+			{ "considerDefaultExhaustiveForUnions": true }
+		],
+		"@stylistic/arrow-parens": ["error", "as-needed"],
+		"eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }]
 	},
+	"overrides": [
+		{
+			"files": ["test/**"],
+			"rules": {
+				"unicorn/consistent-function-scoping": "off"
+			}
+		}
+	],
 	"options": {
 		"typeAware": true,
 		"typeCheck": true
 	},
 	"settings": {
-		"react": {
-			"version": "19"
-		},
-		"vitest": {
-			"typecheck": false
-		},
 		"jsdoc": {
 			"ignorePrivate": false,
 			"ignoreInternal": false,
@@ -61,11 +70,5 @@
 			"exemptDestructuredRootsFromChecks": false
 		}
 	},
-	"ignorePatterns": [
-		"dist/**",
-		"node_modules/**",
-		"jspm_packages/**",
-		"templates/switch/sd/**",
-		"templates/psp/ms/**"
-	]
+	"ignorePatterns": ["dist/**", "node_modules/**", "jspm_packages/**"]
 }

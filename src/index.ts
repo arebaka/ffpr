@@ -1,12 +1,12 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-import { decrypt, encrypt } from './crypt';
-import { deserialize, serialize } from './serialization';
-import type { Data, Type } from './types';
-import { compress, decompress } from './zip';
+import { decrypt, encrypt } from './crypt.js';
+import { deserialize, serialize } from './serialization.js';
+import type { Data, Type } from './types.js';
+import { compress, decompress } from './zip.js';
 
-export type * from './types';
+export type * from './types.js';
 
 export async function unpack(
 	source: Buffer,

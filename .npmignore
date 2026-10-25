@@ -1,12 +1,26 @@
 # Source
 src
+test
 
 # Data
 data
 
+# Config
+.editorconfig
+.gitattributes
+.oxfmtrc.json
+.oxlintrc.json
+.prettierrc.yaml
+bunfig.toml
+tsconfig.json
+
 # Dependencies
 node_modules
 jspm_packages
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+bun.lock
 
 # Dotenv
 .env*

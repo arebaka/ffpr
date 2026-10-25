@@ -20,7 +20,7 @@
 
 	"overrides": [
 		{
-			"files": ["**.yaml", "**.md"],
+			"files": ["**/*.{yaml,yml}", "**/*.md"],
 			"options": {
 				"useTabs": false,
 				"tabWidth": 2
@@ -28,9 +28,5 @@
 		}
 	],
 
-	"ignorePatterns": [
-		"dist/**",
-		"node_modules/**",
-		"jspm_packages/**"
-	]
+	"ignorePatterns": ["dist/**", "node_modules/**", "jspm_packages/**"]
 }

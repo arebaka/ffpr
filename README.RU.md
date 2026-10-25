@@ -41,15 +41,21 @@ await save('path/to/save', data, 'pc');
 ```bash
 npm i ffpr
 ```
+
 или
+
 ```bash
 pnpm add ffpr
 ```
+
 или
+
 ```bash
 yarn add ffpr
 ```
+
 или
+
 ```bash
 bun add ffpr
 ```
