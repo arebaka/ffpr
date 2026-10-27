@@ -17,7 +17,6 @@
 		"@stylistic/eslint-plugin",
 		"eslint-plugin-perfectionist",
 		"eslint-plugin-security",
-		"eslint-plugin-sonarjs",
 		"eslint-plugin-regexp",
 		"eslint-plugin-testing-library",
 		"eslint-plugin-json",

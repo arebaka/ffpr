@@ -1,6 +1,6 @@
 {
 	"name": "ffpr",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"description": "save editor for games of Final Fantasy Pixel Remaster",
 	"keywords": [
 		"editor",
@@ -47,12 +47,10 @@
 		"@types/bun": "^1.4.4",
 		"@types/node": "^26.6.5",
 		"@types/rijndael-js": "^1.0.2",
-		"bun": "^1.4.4",
 		"eslint-plugin-json": "^5.0.0",
 		"eslint-plugin-perfectionist": "^5.13.0",
 		"eslint-plugin-regexp": "^3.3.1",
 		"eslint-plugin-security": "^4.2.0",
-		"eslint-plugin-sonarjs": "^4.2.2",
 		"eslint-plugin-testing-library": "^7.16.2",
 		"eslint-plugin-toml": "^1.5.0",
 		"eslint-plugin-yml": "^3.9.0",
