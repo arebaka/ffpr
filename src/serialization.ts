@@ -63,6 +63,14 @@ async function iterSerialize(
 	return JSON.stringify(output);
 }
 
+/**
+ * Converts save data into the game's JSON. Nested objects are stored as JSON
+ * strings, except the ones the game keeps as objects, and `Buffer` values as
+ * base64.
+ *
+ * @param {Data} data Save data.
+ * @returns {Promise<string>} JSON text of the save.
+ */
 export function serialize(data: Data): Promise<string> {
 	return iterSerialize(data, '') as Promise<string>;
 }
@@ -104,6 +112,13 @@ async function iterDeserialize(
 	return input;
 }
 
+/**
+ * Parses the game's JSON, including objects nested as JSON strings.
+ * `pictureData` is decoded from base64 into a `Buffer`.
+ *
+ * @param {string} input JSON text of the save.
+ * @returns {Promise<Data>} Save data.
+ */
 export function deserialize(input: string): Promise<Data> {
 	return iterDeserialize(input, '') as Promise<Data>;
 }

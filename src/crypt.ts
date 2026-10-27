@@ -10,6 +10,13 @@ const generator = pbkdf2Sync(PASSWORD, SALT, 10, 64, 'sha1');
 const key = generator.subarray(0, 32);
 const iv = generator.subarray(32, 64);
 
+/**
+ * Encrypts data with Rijndael-256-CBC and the game's key, padding it with zeros
+ * to the block size.
+ *
+ * @param {Buffer} input Data to encrypt.
+ * @returns {Buffer} Encrypted data.
+ */
 export function encrypt(input: Buffer): Buffer {
 	const cipher = new Rijndael(key, 'cbc');
 
@@ -22,6 +29,13 @@ export function encrypt(input: Buffer): Buffer {
 	return Buffer.from(encrypted);
 }
 
+/**
+ * Decrypts data encrypted with {@linkcode encrypt}. Trailing zero padding is
+ * trimmed, leaving one zero byte.
+ *
+ * @param {Buffer} input Data to decrypt.
+ * @returns {Buffer} Decrypted data.
+ */
 export function decrypt(input: Buffer): Buffer {
 	const cipher = new Rijndael(key, 'cbc');
 	const decrypted = Buffer.from(cipher.decrypt(input, '256', iv));

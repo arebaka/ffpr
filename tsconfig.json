@@ -12,9 +12,9 @@
 		"skipLibCheck": true,
 		"declaration": true,
 		"sourceMap": false,
-		"rootDir": ".",
+		"rootDir": "src",
 		"outDir": "dist",
 		"declarationDir": "dist"
 	},
-	"include": ["src", "tests"]
+	"include": ["src"]
 }

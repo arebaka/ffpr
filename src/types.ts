@@ -1,7 +1,13 @@
 import type { Buffer } from 'node:buffer';
 
+/** Platform a save file comes from. */
 export type Type = 'switch' | 'pc' | 'playstation';
+/**
+ * Keys of a dictionary that the game stores as parallel `keys` and `values`
+ * arrays.
+ */
 export type Keys = number[];
+/** Value in decoded save data: plain JSON or a `Buffer` for pictures. */
 export type Value =
 	| string
 	| number
@@ -10,15 +16,23 @@ export type Value =
 	| Array<Value>
 	| { [key: string]: Value };
 
+/** Object in decoded save data. */
 export type Record = { [key: string]: Value };
 
+/** Parts of a save slot, see {@linkcode Master}. */
 export namespace master {
+	/** Picture of a save slot, decoded from base64. */
 	export type Picture = Buffer;
+	/** Ability of a character. */
 	export type Ability = {
 		abilityId: number;
 		contentId: number;
 		skillLevel: number;
 	};
+	/**
+	 * Progress: party, characters, items, gil, statistics and Game Booster
+	 * settings.
+	 */
 	export type User = Record & {
 		corpsList: {
 			target: {
@@ -224,6 +238,7 @@ export namespace master {
 		braveBladeEscapeCount?: number;
 		isTakeOverBraveBladeEscapeCount?: boolean;
 	};
+	/** In-game settings saved with the slot: battles, messages and controls. */
 	export type Config = Record & {
 		buttonType: number;
 		battleModeIndex: number;
@@ -240,6 +255,7 @@ export namespace master {
 		analogModeIndex: number;
 		isAutoDash: number;
 	};
+	/** Story, treasure, area and map flags. */
 	export type Storage = Record & {
 		scenario: number[];
 		treasure: number[];
@@ -250,6 +266,7 @@ export namespace master {
 		itemSelected: number;
 		transportation: unknown[];
 	};
+	/** Current map and position of the party. */
 	export type Map = Record & {
 		mapId: number;
 		pointIn: number;
@@ -294,6 +311,7 @@ export namespace master {
 	};
 }
 
+/** Save slot: progress, settings, flags and location of the party. */
 export type Master = Record & {
 	id: number;
 	pictureData?: master.Picture;
@@ -307,6 +325,7 @@ export type Master = Record & {
 	isCompleteFlag: number;
 };
 
+/** Bestiary: defeated monsters and kill counts. */
 export type Bestiary = Record & {
 	scenarioFlags: {
 		target: number[];
@@ -318,7 +337,9 @@ export type Bestiary = Record & {
 	totalSubjugationCount: number;
 };
 
+/** Parts of the game settings, see {@linkcode Config}. */
 export namespace config {
+	/** Gamepad bindings. */
 	export type GamepadKeySettings = Record & {
 		keys: Keys;
 		values: {
@@ -326,6 +347,7 @@ export namespace config {
 			values: number[];
 		}[];
 	};
+	/** Keyboard bindings. */
 	export type KeyboardKeySettings = Record & {
 		keys: Keys;
 		values: {
@@ -339,6 +361,7 @@ export namespace config {
 			}[];
 		}[];
 	};
+	/** Mouse bindings. */
 	export type MouseKeySettings = Record & {
 		keys: Keys;
 		values: {
@@ -354,6 +377,7 @@ export namespace config {
 	};
 }
 
+/** Game settings: language, controls, screen and sound. */
 export type Config = Record & {
 	language: number;
 	fontType: number;
@@ -375,4 +399,8 @@ export type Config = Record & {
 	bgmType: number;
 };
 
+/**
+ * Decoded contents of a save file: a save slot, the bestiary or the game
+ * settings. Key names are kept as the game writes them, typos included.
+ */
 export type Data = Master | Bestiary | Config;
