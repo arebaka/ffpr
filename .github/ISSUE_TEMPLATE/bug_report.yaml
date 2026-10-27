@@ -1,0 +1,78 @@
+name: Bug report
+description: Something does not work as expected.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Report vulnerabilities privately through
+        [GitHub](https://github.com/arebaka/ffpr/security/advisories/new),
+        not in issues.
+  - type: dropdown
+    id: game
+    attributes:
+      label: Game
+      multiple: true
+      options:
+        - Final Fantasy I
+        - Final Fantasy II
+        - Final Fantasy III
+        - Final Fantasy IV
+        - Final Fantasy V
+        - Final Fantasy VI
+        - Does not depend on the game
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      multiple: true
+      options:
+        - Nintendo Switch
+        - PC
+        - PlayStation
+        - Does not depend on the platform
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: ffpr version
+      placeholder: 0.4.2
+    validations:
+      required: true
+  - type: input
+    id: runtime
+    attributes:
+      label: Runtime
+      description: Node.js, Bun or Deno, with its version.
+      placeholder: Node.js 24.11.0
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What you did, what you expected and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: code
+    attributes:
+      label: Code
+      description: The smallest code that shows the problem.
+      render: typescript
+  - type: textarea
+    id: error
+    attributes:
+      label: Error
+      description: The full error message with the stack trace.
+      render: text
+  - type: textarea
+    id: save
+    attributes:
+      label: Save file
+      description: >-
+        If the problem shows up only with a particular save,
+        pack it into a zip archive and attach it here.

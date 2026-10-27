@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and ideas
+    url: https://github.com/arebaka/ffpr/discussions
+    about: Ask in discussions.
+  - name: Telegram
+    url: https://t.me/arelive
+    about: Write the author directly.

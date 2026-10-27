@@ -1,0 +1,35 @@
+name: Feature request
+description: An idea for the library or support for more save data.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What you want to do and what gets in the way.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solution
+      description: How it could work, for example the API or the types.
+  - type: dropdown
+    id: game
+    attributes:
+      label: Game
+      description: Games whose save data the request is about.
+      multiple: true
+      options:
+        - Final Fantasy I
+        - Final Fantasy II
+        - Final Fantasy III
+        - Final Fantasy IV
+        - Final Fantasy V
+        - Final Fantasy VI
+  - type: textarea
+    id: data
+    attributes:
+      label: Save data
+      description: The part of the save JSON that the request is about.
+      render: json

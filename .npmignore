@@ -5,6 +5,14 @@ tests
 # Data
 data
 
+# Repository
+.github
+CODE-OF-CONDUCT.md
+CONTRIBUTING.md
+SECURITY.md
+SUPPORT.md
+MAINTAINERS
+
 # Config
 .editorconfig
 .gitattributes
