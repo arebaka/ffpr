@@ -1,6 +1,8 @@
 # ffpr
 
-> Библиотека для Node.js, которая раскодирует и кодирует сохранения [Final Fantasy Pixel Remaster](https://finalfantasypixelremaster.square-enix-games.com/) с Nintendo Switch, PC и PlayStation.
+> Библиотека для Node.js, которая раскодирует и кодирует сохранения
+> [Final Fantasy Pixel Remaster](https://finalfantasypixelremaster.square-enix-games.com/)
+> с Nintendo Switch, PC и PlayStation.
 
 ![GitHub License](https://img.shields.io/github/license/arebaka/ffpr?style=flat)
 ![GitHub Created At](https://img.shields.io/github/created-at/arebaka/ffpr?style=flat)
@@ -27,7 +29,7 @@ data.userData.owendGil = 9999999;
 await save('path/to/save', data, 'pc');
 ```
 
-Все функции асинхронные. `type` — платформа:
+Все функции асинхронные. `type` - платформа:
 `'switch'`, `'pc'` или `'playstation'`,
 по умолчанию `'switch'`.
 
@@ -62,7 +64,7 @@ bun add ffpr
 
 ## Данные
 
-Сохранение — это JSON, в котором вложенные объекты хранятся как JSON-строки, на несколько уровней в глубину.
+Сохранение - это JSON, в котором вложенные объекты хранятся как JSON-строки, на несколько уровней в глубину.
 `load` и `unpack` разбирают их все в единое дерево объектов,
 `save` и `pack` кодируют обратно.
 `pictureData` раскодируется из base64 в `Buffer`.
@@ -92,7 +94,8 @@ const data = (await load('path/to/save', 'pc')) as Master;
 
 ## Поддержка
 
-Если что-то не работает или просто хочешь поболтать с создателем или его мамой, пиши [@arelive](https://t.me/arelive).
+Если что-то не работает или просто хочешь поболтать с создателем или его мамой,
+пиши [@arelive](https://t.me/arelive).
 Также принимаются пинки от добровольных проджект-менеджеров.
 
 [https://github.com/arebaka/ffpr/issues](https://github.com/arebaka/ffpr/issues)

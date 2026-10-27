@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer';
 import { pbkdf2Sync } from 'node:crypto';
 
 import Rijndael from 'rijndael-js';

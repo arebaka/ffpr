@@ -1,0 +1,64 @@
+{
+	"$schema": "https://raw.githubusercontent.com/denoland/deno/main/cli/schemas/config-file.v1.json",
+
+	"name": "@arelive/ffpr",
+	"version": "0.4.0",
+	"license": "MIT",
+	"exports": "./src/index.ts",
+	"preferPackageJson": true,
+	"nodeModulesDir": "auto",
+	"minimumDependencyAge": "P3D",
+	"lock": false,
+	"unstable": ["sloppy-imports"],
+	"compilerOptions": {
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
+		"lib": ["esnext", "node", "deno.unstable"],
+		"strict": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"verbatimModuleSyntax": true,
+		"skipLibCheck": true
+	},
+	"tasks": {
+		"jsr:check": {
+			"description": "type-check and lint the package for JSR",
+			"command": "deno check src && deno lint"
+		},
+		"jsr:dry-run": {
+			"description": "validate the package without publishing",
+			"command": "deno publish --dry-run --allow-dirty",
+			"dependencies": ["jsr:check"]
+		}
+	},
+	"lint": {
+		"exclude": ["dist", "node_modules", "jspm_packages"],
+		"rules": {
+			"tags": ["recommended", "jsr"],
+			"exclude": ["no-sloppy-imports", "no-namespace"]
+		}
+	},
+	"fmt": {
+		"exclude": ["dist", "node_modules", "jspm_packages"],
+		"useEditorConfig": true,
+		"lineWidth": 80,
+		"proseWrap": "preserve",
+		"semiColons": true,
+		"trailingCommas": "onlyMultiLine",
+		"singleQuote": true,
+		"sortNamedImports": "caseSensitive",
+		"sortNamedExports": "caseSensitive",
+		"quoteProps": "asNeeded",
+		"operatorPosition": "sameLine",
+		"useBraces": "always",
+		"bracePosition": "sameLine",
+		"singleBodyPosition": "sameLine",
+		"spaceAround": false,
+		"spaceSurroundingProperties": true
+	},
+	"exclude": ["dist", "tests"],
+	"publish": {
+		"include": ["src", "README.md", "README.RU.md", "LICENSE"]
+	}
+}

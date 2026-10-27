@@ -1,6 +1,6 @@
 # Source
 src
-test
+tests
 
 # Data
 data
@@ -12,6 +12,7 @@ data
 .oxlintrc.json
 .prettierrc.yaml
 bunfig.toml
+deno.json
 tsconfig.json
 
 # Dependencies

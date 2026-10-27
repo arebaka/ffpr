@@ -20,7 +20,7 @@
 
 	"overrides": [
 		{
-			"files": ["**/*.{yaml,yml}", "**/*.md"],
+			"files": ["**/*.{yaml,yml}"],
 			"options": {
 				"useTabs": false,
 				"tabWidth": 2

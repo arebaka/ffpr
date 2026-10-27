@@ -8,13 +8,13 @@
 		"noUncheckedIndexedAccess": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
-		"isolatedModules": true,
+		"verbatimModuleSyntax": true,
 		"skipLibCheck": true,
 		"declaration": true,
 		"sourceMap": false,
-		"rootDir": "src",
+		"rootDir": ".",
 		"outDir": "dist",
 		"declarationDir": "dist"
 	},
-	"include": ["src"]
+	"include": ["src", "tests"]
 }

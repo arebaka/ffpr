@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 import type { Data, Record, Value } from './types.js';
 
 const doNotSerializeKeys = new Set([
@@ -16,16 +18,15 @@ async function mapChildren(
 	const output = structuredClone(data);
 	if (Array.isArray(output)) {
 		await Promise.all(
-			output.map(
-				async (v, i, a) => (a[i] = await iterate(v, `${rootKey}[]`)),
-			),
+			output.map(async (v, i, a) => {
+				a[i] = await iterate(v, `${rootKey}[]`);
+			}),
 		);
 	} else {
 		await Promise.all(
-			Object.entries(output).map(
-				async ([k, v]) =>
-					(output[k] = await iterate(v, `${rootKey}.${k}`)),
-			),
+			Object.entries(output).map(async ([k, v]) => {
+				output[k] = await iterate(v, `${rootKey}.${k}`);
+			}),
 		);
 	}
 	return output;

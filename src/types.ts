@@ -1,3 +1,5 @@
+import type { Buffer } from 'node:buffer';
+
 export type Type = 'switch' | 'pc' | 'playstation';
 export type Keys = number[];
 export type Value =
@@ -12,6 +14,11 @@ export type Record = { [key: string]: Value };
 
 export namespace master {
 	export type Picture = Buffer;
+	export type Ability = {
+		abilityId: number;
+		contentId: number;
+		skillLevel: number;
+	};
 	export type User = Record & {
 		corpsList: {
 			target: {
@@ -80,26 +87,14 @@ export namespace master {
 					target: number[];
 				};
 				abilityList: {
-					target: {
-						abilityId: number;
-						contentId: number;
-						skillLevel: number;
-						abilityName?: string;
-					}[];
+					target: (Ability & { abilityName?: string })[];
 				};
 				abilitySlotDataList: {
 					target: {
 						level: number;
 						slotInfo: {
 							keys: Keys;
-							values: (
-								| ''
-								| {
-										abilityId: number;
-										contentId: number;
-										skillLevel: number;
-								  }
-							)[];
+							values: ('' | Ability)[];
 						};
 					}[];
 				};
@@ -126,11 +121,7 @@ export namespace master {
 				abilityDictionary: {
 					keys: Keys;
 					values: {
-						target: {
-							abilityId: number;
-							contentId: number;
-							skillLevel: number;
-						}[];
+						target: Ability[];
 					}[];
 				};
 				skillLevelTargets: {

@@ -1,3 +1,4 @@
+import type { Buffer } from 'node:buffer';
 import { promisify } from 'node:util';
 import { deflateRaw, inflate, inflateRaw } from 'node:zlib';
 

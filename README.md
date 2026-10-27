@@ -1,6 +1,8 @@
 # ffpr
 
-> Node.js library for decoding and encoding [Final Fantasy Pixel Remaster](https://finalfantasypixelremaster.square-enix-games.com/) save files from Nintendo Switch, PC and PlayStation.
+> Node.js library for decoding and encoding
+> [Final Fantasy Pixel Remaster](https://finalfantasypixelremaster.square-enix-games.com/)
+> save files from Nintendo Switch, PC and PlayStation.
 
 ![GitHub License](https://img.shields.io/github/license/arebaka/ffpr?style=flat)
 ![GitHub Created At](https://img.shields.io/github/created-at/arebaka/ffpr?style=flat)
@@ -92,7 +94,8 @@ const data = (await load('path/to/save', 'pc')) as Master;
 
 ## Support
 
-If something doesnt work, or you just wanna talk to the creator or his mom, write [@arelive](https://t.me/arelive).
+If something doesnt work, or you just wanna talk to the creator or his mom,
+write [@arelive](https://t.me/arelive).
 There also accepted kicks from volunteer project managers.
 
 [https://github.com/arebaka/ffpr/issues](https://github.com/arebaka/ffpr/issues)
