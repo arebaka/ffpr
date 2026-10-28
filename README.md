@@ -17,7 +17,10 @@
 - Nested JSON strings are unpacked into a plain object tree and packed back.
 - TypeScript types for the save structure: characters, jobs, abilities, items, party, map, story flags and more.
 - Works with files or with buffers.
-- One runtime dependency, no native addons.
+- Two runtime dependencies, no native addons.
+
+Saves can also be edited in the browser with an editor built on this library.
+Files are decoded locally and are not uploaded.
 
 ## Usage
 
@@ -35,7 +38,7 @@ All functions are async. `type` is the platform:
 
 - `load(filename, type?)` reads and decodes a save file.
 - `save(filename, data, type?)` encodes data and writes it to a file.
-- `unpack(buffer, type?)` decodes file contents from a `Buffer`.
+- `unpack(buffer, type?)` decodes file contents from a `Buffer` or a `Uint8Array`.
 - `pack(data, type?)` encodes data into a `Buffer`.
 
 ## Installation

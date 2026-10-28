@@ -69,5 +69,10 @@
 			"exemptDestructuredRootsFromChecks": false
 		}
 	},
-	"ignorePatterns": ["dist/**", "node_modules/**", "jspm_packages/**"]
+	"ignorePatterns": [
+		"dist/**",
+		"node_modules/**",
+		"jspm_packages/**",
+		"www/**"
+	]
 }

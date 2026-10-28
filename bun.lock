@@ -5,6 +5,7 @@
     "": {
       "name": "ffpr",
       "dependencies": {
+        "fflate": "^0.8.3",
         "rijndael-js": "^2.0.0",
       },
       "devDependencies": {
@@ -280,6 +281,8 @@
     "fast-levenshtein": ["fast-levenshtein@2.0.6", "", {}, ""],
 
     "fdir": ["fdir@6.5.0", "", { "peerDependencies": { "picomatch": "^3 || ^4" } }, ""],
+
+    "fflate": ["fflate@0.8.3", "", {}, "sha512-tbZNuJrLwGUp3zshBtdy4W+ORxZuIh8a5ilyIEQDC5rY1f3U20JMry0Ll3WBzU58EZKsEuJFXhb5gwv8CsPvgA=="],
 
     "file-entry-cache": ["file-entry-cache@11.1.5", "", { "dependencies": { "flat-cache": "^6.1.23" } }, "sha512-+PFTHITI08JIGhnNpGNI8T8inUpgZfk3GNEqfT9R2zZV2iFXg3CvqzSl/uEhs7TSGujYRELEANyDvS8Fj7+S7Q=="],
 

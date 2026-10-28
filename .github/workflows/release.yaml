@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   check:
-    uses: ./.github/workflows/check.yaml
+    uses: ./.github/workflows/ci.yaml
 
   version:
     name: version

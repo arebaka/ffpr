@@ -4,6 +4,18 @@ Notable changes of each release.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0]
+
+### Added
+
+- `unpack` accepts any `Uint8Array`, not only a `Buffer`.
+
+### Changed
+
+- Deflate is done by [fflate](https://github.com/101arrowz/fflate)
+  instead of `node:zlib`, which is not available in browsers.
+  The package has two runtime dependencies now.
+
 ## [0.4.2] - 2026-10-27
 
 ### Added
@@ -90,6 +102,7 @@ versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 First release: `load`, `save`, `unpack` and `pack` for Nintendo Switch saves.
 
+[0.5.0]: https://github.com/arebaka/ffpr/compare/v0.4.2...HEAD
 [0.4.2]: https://github.com/arebaka/ffpr/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/arebaka/ffpr/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/arebaka/ffpr/compare/v0.3.1...v0.4.0

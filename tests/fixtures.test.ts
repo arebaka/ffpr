@@ -15,7 +15,7 @@ const TYPES: Type[] = ['switch', 'pc', 'playstation'];
 const ROOT = join(import.meta.dirname, 'fixtures');
 
 // JSON as stored in the file, nested strings are left as is
-async function readJson(file: Buffer, type: Type): Promise<unknown> {
+function readJson(file: Buffer, type: Type): unknown {
 	if (type === 'playstation') {
 		return JSON.parse(file.toString('utf8'));
 	}
@@ -26,7 +26,7 @@ async function readJson(file: Buffer, type: Type): Promise<unknown> {
 		const base64 = file.subarray(bom ? 3 : 0).toString('utf8');
 		encrypted = Buffer.from(base64, 'base64');
 	}
-	const json = await decompress(decrypt(encrypted));
+	const json = decompress(decrypt(encrypted));
 	return JSON.parse(json.toString('utf8'));
 }
 
@@ -103,10 +103,7 @@ for (const type of TYPES) {
 				const source = readFileSync(join(dir, name));
 				const output = await pack(await unpack(source, type), type);
 				expect(
-					diff(
-						await readJson(source, type),
-						await readJson(output, type),
-					),
+					diff(readJson(source, type), readJson(output, type)),
 				).toEqual([]);
 			});
 		}

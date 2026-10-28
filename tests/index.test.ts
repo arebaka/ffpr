@@ -93,6 +93,13 @@ describe('pack and unpack', () => {
 		expect(await unpack(file)).toStrictEqual(slot);
 	});
 
+	test('unpack accepts a Uint8Array view', async () => {
+		const file = await pack(slot, 'pc');
+		const bytes = new Uint8Array(file.length + 2);
+		bytes.set(file, 2);
+		expect(await unpack(bytes.subarray(2), 'pc')).toStrictEqual(slot);
+	});
+
 	test('strings that look like JSON stay strings', async () => {
 		const data = {
 			id: 1,
