@@ -5,13 +5,21 @@
 		"promise",
 		"unicorn",
 		"typescript",
+		"jsx-a11y",
+		"react",
+		"oxc",
+		"vitest",
 		"node",
 		"eslint",
 		"jsdoc"
 	],
 	"env": {
 		"es2024": true,
+		"browser": true,
 		"node": true
+	},
+	"globals": {
+		"Bun": "readonly"
 	},
 	"jsPlugins": [
 		"@stylistic/eslint-plugin",
@@ -25,15 +33,19 @@
 	],
 	"categories": {
 		"correctness": "error",
-		"suspicious": "warn",
+		"suspicious": "error",
+		"nursery": "error",
+		"perf": "error",
 		"pedantic": "warn",
-		"perf": "warn",
-		"style": "off",
 		"restriction": "off",
-		"nursery": "off"
+		"style": "off"
 	},
 	"rules": {
 		"arrow-body-style": ["error", "as-needed"],
+		"import/no-unassigned-import": [
+			"error",
+			{ "allow": ["**/*.css", "**/*.scss"] }
+		],
 		"unicorn/escape-case": "off",
 		"unicorn/number-literal-case": "off",
 		"unicorn/no-hex-escape": "off",
@@ -43,14 +55,25 @@
 			"warn",
 			{ "considerDefaultExhaustiveForUnions": true }
 		],
-		"@stylistic/arrow-parens": ["error", "as-needed"],
-		"eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }]
+		"jsx-a11y/no-noninteractive-element-interactions": "off",
+		"jsx-a11y/no-noninteractive-tabindex": "off",
+		"jsx-a11y/prefer-tag-over-role": "off",
+		"react/react-in-jsx-scope": "off",
+		"oxc/no-map-spread": "off",
+		"vitest/valid-expect": ["error", { "maxArgs": 2 }],
+		"vitest/expect-expect": [
+			"error",
+			{ "assertFunctionNames": ["expect", "expect*"] }
+		],
+		"eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+		"@stylistic/arrow-parens": ["error", "as-needed"]
 	},
 	"overrides": [
 		{
-			"files": ["test/**"],
+			"files": ["tests/**", "www/tests/**"],
 			"rules": {
-				"unicorn/consistent-function-scoping": "off"
+				"unicorn/consistent-function-scoping": "off",
+				"typescript/no-unsafe-type-assertion": "off"
 			}
 		}
 	],
@@ -59,6 +82,11 @@
 		"typeCheck": true
 	},
 	"settings": {
+		"jsx-a11y": {
+			"attributes": {
+				"for": ["htmlFor", "for"]
+			}
+		},
 		"jsdoc": {
 			"ignorePrivate": false,
 			"ignoreInternal": false,
@@ -69,10 +97,5 @@
 			"exemptDestructuredRootsFromChecks": false
 		}
 	},
-	"ignorePatterns": [
-		"dist/**",
-		"node_modules/**",
-		"jspm_packages/**",
-		"www/**"
-	]
+	"ignorePatterns": ["dist/**", "node_modules/**", "jspm_packages/**"]
 }

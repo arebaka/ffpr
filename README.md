@@ -19,7 +19,8 @@
 - Works with files or with buffers.
 - Two runtime dependencies, no native addons.
 
-Saves can also be edited in the browser with an editor built on this library.
+Saves can also be edited in the browser with
+[an editor](https://arebaka.github.io/ffpr/) built on this library.
 Files are decoded locally and are not uploaded.
 
 ## Usage
@@ -40,6 +41,8 @@ All functions are async. `type` is the platform:
 - `save(filename, data, type?)` encodes data and writes it to a file.
 - `unpack(buffer, type?)` decodes file contents from a `Buffer` or a `Uint8Array`.
 - `pack(data, type?)` encodes data into a `Buffer`.
+
+`load` and `unpack` throw an error if the file is not a save of the given platform.
 
 ## Installation
 

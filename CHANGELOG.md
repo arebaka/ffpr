@@ -4,17 +4,23 @@ Notable changes of each release.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.5.0]
+## [0.5.0] - 2026-10-29
 
 ### Added
 
 - `unpack` accepts any `Uint8Array`, not only a `Buffer`.
+- [Browser editor](https://arebaka.github.io/ffpr/) built on the library.
+  Its source is in `www`, it is not part of the package.
 
 ### Changed
 
+- **Breaking:** `Value` includes `null`, JSON in a save may contain it.
 - Deflate is done by [fflate](https://github.com/101arrowz/fflate)
   instead of `node:zlib`, which is not available in browsers.
   The package has two runtime dependencies now.
+- `unpack` throws an error if the save is not a JSON object.
+- `pack` and `unpack` are faster:
+  objects are no longer copied on every level of nesting.
 
 ## [0.4.2] - 2026-10-27
 
@@ -22,7 +28,7 @@ versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Changelog, contributing guide, code of conduct, security policy, support page,
   issue and pull request templates.
-- Releases are published to npm and JSR from GitHub Actions with provenance.
+- The JSR package is published from GitHub Actions with provenance.
 
 ## [0.4.1] - 2026-10-27
 
@@ -102,7 +108,7 @@ versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 First release: `load`, `save`, `unpack` and `pack` for Nintendo Switch saves.
 
-[0.5.0]: https://github.com/arebaka/ffpr/compare/v0.4.2...HEAD
+[0.5.0]: https://github.com/arebaka/ffpr/compare/v0.4.2...v0.5.0
 [0.4.2]: https://github.com/arebaka/ffpr/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/arebaka/ffpr/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/arebaka/ffpr/compare/v0.3.1...v0.4.0

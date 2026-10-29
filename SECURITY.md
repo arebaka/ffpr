@@ -6,8 +6,8 @@ Fixes are released for the latest version only.
 
 | Version | Supported |
 | ------- | --------- |
-| 0.4.x   | yes       |
-| < 0.4   | no        |
+| 0.6.x   | yes       |
+| < 0.6   | no        |
 
 ## Reporting a vulnerability
 

@@ -1,6 +1,6 @@
 {
 	"name": "ffpr",
-	"version": "0.5.0",
+	"version": "0.6.0",
 	"description": "save editor for games of Final Fantasy Pixel Remaster",
 	"keywords": [
 		"editor",
@@ -25,19 +25,28 @@
 		"type": "patreon",
 		"url": "https://www.patreon.com/arelive"
 	},
+	"workspaces": [
+		"www"
+	],
 	"type": "module",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"scripts": {
-		"lint": "oxlint --disable-nested-config",
-		"lint:fix": "oxlint --disable-nested-config --fix",
-		"format": "oxfmt --check --disable-nested-config",
-		"format:write": "oxfmt --write --disable-nested-config",
+		"lint": "oxlint",
+		"lint:fix": "oxlint --fix",
+		"format": "oxfmt --check",
+		"format:write": "oxfmt --write",
 		"test": "bun test",
 		"check": "tsc --noEmit && bun run lint && bun run format && bun run test",
 		"clean": "rm -rf dist",
 		"build": "bun run clean && tsc",
-		"prepublishOnly": "bun run check && bun run build"
+		"www:test": "bun run --cwd www test",
+		"www:check": "bun run --cwd www check",
+		"www:clean": "bun run --cwd www clean",
+		"www:build": "bun run --cwd www build",
+		"www:dev": "bun run --cwd www dev",
+		"www:preview": "bun run --cwd www preview",
+		"prepublishOnly": "bun run check && bun run www:check && bun run build"
 	},
 	"dependencies": {
 		"fflate": "^0.8.3",

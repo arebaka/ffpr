@@ -1,0 +1,61 @@
+@use 'theme' as *;
+
+html {
+	color-scheme: dark;
+}
+
+body {
+	margin: 0;
+	font-family: 'Press Start 2P', monospace;
+	line-height: 1.6;
+	color: $text;
+	background: $background;
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+}
+
+h2,
+h3,
+h4 {
+	font-size: 1rem;
+}
+
+h4 {
+	margin: $gap 0 1rem;
+}
+
+a {
+	color: $primary;
+
+	&:hover {
+		color: $primary-hover;
+	}
+
+	&:focus-visible {
+		@include focus-ring;
+	}
+}
+
+// NES.css draws list bullets in the light theme color
+.nes-list.is-disc li::before {
+	color: $text;
+}
+
+.hint {
+	font-size: 0.75rem;
+	color: $muted;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	white-space: nowrap;
+	clip-path: inset(50%);
+}

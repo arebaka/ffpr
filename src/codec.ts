@@ -11,6 +11,7 @@ import { compress, decompress } from './zip.js';
  * @param {Uint8Array} source Contents of the save file.
  * @param {Type} type Platform the save file comes from.
  * @returns {Promise<Data>} Save data as a plain object tree.
+ * @throws {Error} If the contents are not a save file of this platform.
  */
 export async function unpack(
 	source: Uint8Array,

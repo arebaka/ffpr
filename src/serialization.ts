@@ -10,38 +10,32 @@ const doNotSerializeKeys = new Set([
 	'.mapData.otherPartyDataList[].playerEntity.position',
 ]);
 
-async function mapChildren(
-	data: Value[] | Record,
+function mapItems<T>(
+	items: readonly T[],
 	rootKey: string,
-	iterate: (value: Value, key: string) => Promise<Value>,
-): Promise<Value[] | Record> {
-	const output = structuredClone(data);
-	if (Array.isArray(output)) {
-		await Promise.all(
-			output.map(async (v, i, a) => {
-				a[i] = await iterate(v, `${rootKey}[]`);
-			}),
-		);
-	} else {
-		await Promise.all(
-			Object.entries(output).map(async ([k, v]) => {
-				output[k] = await iterate(v, `${rootKey}.${k}`);
-			}),
-		);
-	}
-	return output;
+	iterate: (value: T, key: string) => Promise<Value>,
+): Promise<Value[]> {
+	return Promise.all(items.map((item: T) => iterate(item, `${rootKey}[]`)));
 }
 
-async function iterSerialize(
-	data: Value,
+async function mapEntries<T>(
+	entries: readonly (readonly [string, T])[],
 	rootKey: string,
-): Promise<string | Value> {
+	iterate: (value: T, key: string) => Promise<Value>,
+): Promise<Record> {
+	const mapped = await Promise.all(
+		entries.map(
+			async ([key, value]) =>
+				[key, await iterate(value, `${rootKey}.${key}`)] as const,
+		),
+	);
+	return Object.fromEntries(mapped);
+}
+
+async function iterSerialize(data: Value, rootKey: string): Promise<Value> {
 	if (rootKey === '.pictureData') {
 		if (typeof data === 'string') {
 			return data;
-		}
-		if (Buffer.isBuffer(data)) {
-			return data.toString('base64');
 		}
 		if (data instanceof Uint8Array) {
 			return Buffer.from(data).toString('base64');
@@ -52,15 +46,19 @@ async function iterSerialize(
 	if (Buffer.isBuffer(data)) {
 		return data.toString('base64');
 	}
-	if (!(typeof data === 'object') || data === null) {
+	if (typeof data !== 'object' || data === null) {
 		return data;
 	}
 
-	const output = await mapChildren(data, rootKey, iterSerialize);
-	if (Array.isArray(output) || doNotSerializeKeys.has(rootKey)) {
-		return output;
+	if (Array.isArray(data)) {
+		return mapItems(data, rootKey, iterSerialize);
 	}
-	return JSON.stringify(output);
+	const output = await mapEntries(
+		Object.entries(data),
+		rootKey,
+		iterSerialize,
+	);
+	return doNotSerializeKeys.has(rootKey) ? output : JSON.stringify(output);
 }
 
 /**
@@ -71,17 +69,29 @@ async function iterSerialize(
  * @param {Data} data Save data.
  * @returns {Promise<string>} JSON text of the save.
  */
-export function serialize(data: Data): Promise<string> {
-	return iterSerialize(data, '') as Promise<string>;
+export async function serialize(data: Data): Promise<string> {
+	const output = await mapEntries(Object.entries(data), '', iterSerialize);
+	return JSON.stringify(output);
 }
 
 function isNested(input: unknown): input is string {
 	return typeof input === 'string' && input.trimStart().startsWith('{');
 }
 
-function tryParse(input: string): Value | undefined {
+function isPrimitive(
+	input: unknown,
+): input is string | number | boolean | null {
+	return (
+		input === null ||
+		typeof input === 'string' ||
+		typeof input === 'number' ||
+		typeof input === 'boolean'
+	);
+}
+
+function tryParse(input: string): unknown {
 	try {
-		return JSON.parse(input) as Value;
+		return JSON.parse(input);
 	} catch {
 		// if the string is not JSON
 		return undefined;
@@ -89,27 +99,41 @@ function tryParse(input: string): Value | undefined {
 }
 
 async function iterDeserialize(
-	input: string | Value,
+	input: unknown,
 	rootKey: string,
 ): Promise<Value> {
 	if (rootKey === '.pictureData' && typeof input === 'string') {
 		return Buffer.from(input, 'base64');
 	}
 
-	if (Buffer.isBuffer(input)) {
-		const data = JSON.parse(input.toString('utf8')) as Value;
-		return iterDeserialize(data, rootKey);
-	}
 	if (isNested(input)) {
 		const data = tryParse(input);
 		return data === undefined ? input : iterDeserialize(data, rootKey);
 	}
-
+	if (Array.isArray(input)) {
+		return mapItems(input, rootKey, iterDeserialize);
+	}
 	if (typeof input === 'object' && input !== null) {
-		const data = await mapChildren(input, rootKey, iterDeserialize);
+		const data = await mapEntries(
+			Object.entries(input),
+			rootKey,
+			iterDeserialize,
+		);
 		return data;
 	}
-	return input;
+	if (isPrimitive(input)) {
+		return input;
+	}
+	throw new Error(`deserialize: Invalid value at ${rootKey}`);
+}
+
+function isData(value: Value): value is Data {
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		!Array.isArray(value) &&
+		!Buffer.isBuffer(value)
+	);
 }
 
 /**
@@ -118,7 +142,12 @@ async function iterDeserialize(
  *
  * @param {string} input JSON text of the save.
  * @returns {Promise<Data>} Save data.
+ * @throws {Error} If the JSON is not an object.
  */
-export function deserialize(input: string): Promise<Data> {
-	return iterDeserialize(input, '') as Promise<Data>;
+export async function deserialize(input: string): Promise<Data> {
+	const data = await iterDeserialize(input, '');
+	if (!isData(data)) {
+		throw new Error('deserialize: Save data is not an object');
+	}
+	return data;
 }

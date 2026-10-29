@@ -12,6 +12,7 @@ export type Value =
 	| string
 	| number
 	| boolean
+	| null
 	| Buffer
 	| Array<Value>
 	| { [key: string]: Value };
@@ -378,7 +379,7 @@ export namespace config {
 }
 
 /** Game settings: language, controls, screen and sound. */
-export type Config = Record & {
+type Settings = Record & {
 	language: number;
 	fontType: number;
 	gamePadKeySettings: config.GamepadKeySettings;
@@ -399,8 +400,11 @@ export type Config = Record & {
 	bgmType: number;
 };
 
+// declared under another name, master.Config would shadow it
+export type { Settings as Config };
+
 /**
  * Decoded contents of a save file: a save slot, the bestiary or the game
  * settings. Key names are kept as the game writes them, typos included.
  */
-export type Data = Master | Bestiary | Config;
+export type Data = Master | Bestiary | Settings;

@@ -1,6 +1,7 @@
 # Source
 src
 tests
+www
 
 # Data
 data
@@ -22,6 +23,7 @@ MAINTAINERS
 bunfig.toml
 deno.json
 tsconfig.json
+tsconfig.base.json
 
 # Dependencies
 node_modules

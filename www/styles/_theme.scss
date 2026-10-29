@@ -1,0 +1,33 @@
+@use 'sass:color';
+
+// dark palette of NES.css
+$background: #212529;
+$text: #fff;
+$muted: #adafbc;
+$line: #4a5056;
+$primary: #209cee;
+$primary-hover: color.adjust($primary, $lightness: 15%);
+$warning: #f7d51d;
+$highlight: #2b3d4f;
+
+$gap: 2rem;
+$narrow: 30rem;
+$mono: ui-monospace, 'Cascadia Mono', menlo, consolas, monospace;
+
+@mixin row($gap: 1rem) {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: $gap;
+}
+
+@mixin narrow {
+	@media (width < $narrow) {
+		@content;
+	}
+}
+
+@mixin focus-ring {
+	outline: 4px solid $primary;
+	outline-offset: 2px;
+}

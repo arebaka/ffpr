@@ -33,6 +33,8 @@ export { pack, unpack };
  * @param {string} filename Path to the save file.
  * @param {Type} type Platform the save file comes from.
  * @returns {Promise<Data>} Save data as a plain object tree.
+ * @throws {Error} If the file cannot be read or is not a save file of this
+ *   platform.
  */
 export async function load(
 	filename: string,

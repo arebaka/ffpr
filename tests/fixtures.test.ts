@@ -45,7 +45,7 @@ function parseNested(value: string): object | undefined {
 }
 
 function show(value: unknown): string {
-	const json = JSON.stringify(value) ?? String(value);
+	const json = value === undefined ? 'undefined' : JSON.stringify(value);
 	return json.length > 60 ? `${json.slice(0, 60)}...` : json;
 }
 

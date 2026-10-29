@@ -29,9 +29,9 @@
 	],
 
 	"ignorePatterns": [
+		"index.html",
 		"dist/**",
 		"node_modules/**",
-		"jspm_packages/**",
-		"www/**"
+		"jspm_packages/**"
 	]
 }

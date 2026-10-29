@@ -1,0 +1,89 @@
+@use 'theme' as *;
+
+.app {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	gap: $gap;
+	max-width: 64rem;
+	min-height: 100vh;
+	margin: 0 auto;
+	padding: 1.5rem 1rem;
+
+	@include narrow {
+		padding: 1rem 0.5rem;
+	}
+}
+
+main {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: $gap;
+}
+
+.nes-container {
+	@include narrow {
+		padding: 1.5rem 1rem;
+	}
+}
+
+.app-title {
+	display: inline-flex;
+	align-items: center;
+	gap: 1rem;
+	font-size: 1.25rem;
+	color: $text;
+
+	&:hover {
+		color: $primary;
+		text-decoration: none;
+	}
+
+	img {
+		image-rendering: pixelated;
+	}
+}
+
+.app-footer {
+	font-size: 0.75rem;
+	color: $muted;
+	text-align: center;
+
+	p {
+		margin: 0.5rem 0;
+	}
+}
+
+.tabs {
+	@include row;
+
+	.nes-btn {
+		margin: 0;
+	}
+
+	section > & {
+		margin-bottom: $gap;
+	}
+}
+
+.file > .title {
+	overflow-wrap: anywhere;
+}
+
+.file-actions {
+	@include row;
+
+	justify-content: space-between;
+}
+
+.download {
+	@include row;
+
+	min-width: 0;
+
+	> p {
+		flex-basis: 100%;
+		margin: 0;
+	}
+}

@@ -1,0 +1,51 @@
+@use 'theme' as *;
+
+.search {
+	max-width: 30rem;
+	margin-bottom: 1.5rem;
+
+	.nes-input {
+		flex: 1;
+	}
+}
+
+.nes-table-responsive {
+	margin-bottom: $gap;
+}
+
+.nes-table {
+	// the bordered table has a margin of 4px
+	width: calc(100% - 8px);
+
+	td,
+	th {
+		padding: 0.5rem 0.75rem;
+		vertical-align: middle;
+	}
+}
+
+// an empty layer that NES.css stretches over the nearest positioned parent,
+// it would catch the clicks on the whole panel
+.nes-table.is-dark::before {
+	display: none;
+}
+
+.sort {
+	padding: 0;
+	font: inherit;
+	color: inherit;
+	cursor: pointer;
+	background: none;
+	border: 0;
+
+	&:focus-visible {
+		@include focus-ring;
+	}
+}
+
+.count {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 9rem;
+	padding: 0.25rem 0.5rem;
+}
