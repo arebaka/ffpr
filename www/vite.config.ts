@@ -2,6 +2,7 @@
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
+import yaml from '@modyfi/vite-plugin-yaml';
 import { defineConfig } from 'vite';
 import solid from 'vite-plugin-solid';
 
@@ -11,7 +12,7 @@ const shim = (name: string) =>
 
 export default defineConfig({
 	base: './',
-	plugins: [solid()],
+	plugins: [solid(), yaml()],
 	resolve: {
 		tsconfigPaths: true,
 		alias: {

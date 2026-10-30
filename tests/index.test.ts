@@ -3,8 +3,8 @@ import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { load, pack, save, unpack } from '../src/index.js';
-import type { Master, Type } from '../src/index.js';
+import { load, pack, save, unpack } from '@/index.js';
+import type { Master, Type } from '@/index.js';
 
 const TYPES: Type[] = ['switch', 'pc', 'playstation'];
 const BOM = [0xef, 0xbb, 0xbf];

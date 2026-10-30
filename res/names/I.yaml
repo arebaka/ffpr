@@ -1,0 +1,253 @@
+items:
+  2: Potion
+  3: Hi-Potion
+  4: X-Potion
+  5: Ether
+  7: Dry Ether
+  8: Elixir
+  10: Phoenix Down
+  11: Antidote
+  12: Eye Drops
+  13: Echo Grass
+  14: Gold Needle
+  15: Remedy
+  17: Sleeping Bag
+  18: Tent
+  19: Cottage
+  32: Giant's Tonic
+  34: Strength Tonic
+  35: Protect Drink
+  36: Speed Drink
+  63: Knife
+  64: Dagger
+  65: Mythril Knife
+  67: Cat Claws
+  71: Rapier
+  72: Saber
+  73: Broadsword
+  74: Werebuster
+  75: Rune Blade
+  76: Wyrmkiller
+  77: Coral Sword
+  78: Longsword
+  79: Great Sword
+  80: Razer
+  81: Mythril Sword
+  82: Vorpal Sword
+  83: Flame Sword
+  86: Ice Brand
+  87: Defender
+  89: Sun Blade
+  92: Excalibur
+  96: Scimitar
+  97: Falchion
+  100: Sasuke's Blade
+  103: Masamune
+  104: Nunchaku
+  105: Iron Nunchaku
+  106: Battle Axe
+  107: Great Axe
+  109: Mythril Axe
+  110: Light Axe
+  114: Hammer
+  115: Mythril Hammer
+  116: Thor's Hammer
+  118: Staff
+  119: Healing Staff
+  120: Power Staff
+  121: Mage's Staff
+  122: Crosier
+  123: Wizard's Staff
+  134: Clothes
+  136: White Robe
+  137: Black Robe
+  145: Leather Armor
+  146: Chain Mail
+  147: Mythril Mail
+  148: Iron Armor
+  149: Ice Armor
+  150: Flame Mail
+  151: Knight's Armor
+  153: Diamond Armor
+  154: Dragon Mail
+  156: Copper Armlet
+  157: Silver Armlet
+  158: Ruby Armlet
+  160: Diamond Armlet
+  161: Leather Shield
+  162: Buckler
+  163: Iron Shield
+  164: Mythril Shield
+  165: Ice Shield
+  166: Flame Shield
+  168: Diamond Shield
+  170: Aegis Shield
+  173: Protect Cloak
+  175: Leather Cap
+  183: Ribbon
+  184: Helm
+  185: Great Helm
+  186: Healing Helm
+  187: Mythril Helm
+  188: Diamond Helm
+  191: Leather Gloves
+  192: Bronze Gloves
+  193: Steel Gloves
+  194: Gauntlets
+  195: Giant's Gloves
+  197: Mythril Gloves
+  198: Diamond Gloves
+  202: Protect Ring
+keyItems:
+  45: Lute
+  46: Crown
+  47: Crystal Eye
+  48: Jolt Tonic
+  49: Mystic Key
+  50: Nitro Powder
+  51: Adamantite
+  52: Rosetta Stone
+  53: Star Ruby
+  54: Earth Rod
+  55: Levistone
+  56: Chime
+  57: Rat's Tail
+  58: Warp Cube
+  59: Bottled Faerie
+  60: Oxyale
+  61: Canoe
+empty:
+  62: Empty
+  130: None
+  131: None
+  132: None
+  133: None
+monsters:
+  1: Goblin
+  2: Goblin Guard
+  3: Wolf
+  4: Warg Wolf
+  5: Werewolf
+  6: Winter Wolf
+  7: Lizard
+  8: Fire Lizard
+  9: Basilisk
+  10: Hill Gigas
+  11: Ice Gigas
+  12: Fire Gigas
+  13: Sahagin
+  14: Sahagin Chief
+  15: Sahagin Prince
+  16: Pirate
+  17: Buccaneer
+  18: Shark
+  19: White Shark
+  20: Bigeyes
+  21: Deepeyes
+  22: Skeleton
+  23: Bloodbones
+  24: Gigas Worm
+  25: Crawler
+  26: Hyenadon
+  27: Hellhound
+  28: Ogre
+  29: Ogre Chief
+  30: Ogre Mage
+  31: Cobra
+  32: Anaconda
+  33: Sea Snake
+  34: Scorpion
+  35: Sea Scorpion
+  36: Minotaur
+  37: Minotaur Zombie
+  38: Troll
+  39: Sea Troll
+  40: Shadow
+  41: Wraith
+  42: Specter
+  43: Ghost
+  44: Zombie
+  45: Ghoul
+  46: Ghast
+  47: Wight
+  48: Purple Worm
+  49: Sand Worm
+  50: Lava Worm
+  51: Evil Eye
+  52: Death Eye
+  53: Medusa
+  54: Earth Medusa
+  55: Weretiger
+  56: Rakshasa
+  57: Ankheg
+  58: Remorazz
+  59: Lesser Tiger
+  60: Sabertooth
+  61: Vampire
+  62: Vampire Lord
+  63: Gargoyle
+  64: Horned Devil
+  65: Earth Elemental
+  66: Fire Elemental
+  67: White Dragon
+  68: Red Dragon
+  69: Dragon Zombie
+  70: Green Slime
+  71: Gray Ooze
+  72: Ochre Jelly
+  73: Black Flan
+  74: Black Widow
+  75: Tarantula
+  76: Manticore
+  77: Sphinx
+  78: Baretta
+  79: Desert Baretta
+  80: Mummy
+  81: King Mummy
+  82: Cockatrice
+  83: Pyrolisk
+  84: Wyvern
+  85: Wyrm
+  86: Allosaurus
+  87: Tyrannosaur
+  88: Piranha
+  89: Red Piranha
+  90: Crocodile
+  91: White Croc
+  92: Ochu
+  93: Neochu
+  94: Hydra
+  95: Fire Hydra
+  96: Guardian
+  97: Soldier
+  98: Water Elemental
+  99: Air Elemental
+  100: Water Naga
+  101: Spirit Naga
+  102: Chimera
+  103: Rhyos
+  104: Piscodemon
+  105: Mindflayer
+  106: Garland
+  107: Green Dragon
+  108: Blue Dragon
+  109: Clay Golem
+  110: Stone Golem
+  111: Iron Golem
+  112: Black Knight
+  113: Death Knight
+  114: Astos
+  115: Dark Wizard
+  116: Dark Fighter
+  117: Crazy Horse
+  118: Nightmare
+  119: Warmech
+  120: Lich
+  121: Lich
+  122: Marilith
+  123: Marilith
+  124: Kraken
+  125: Kraken
+  126: Tiamat
+  127: Tiamat
+  128: Chaos

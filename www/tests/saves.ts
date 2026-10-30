@@ -13,9 +13,16 @@ const character = (id: number, name: string) => ({
 	name,
 	currentExp: 12_800,
 	parameter: { currentHP: 235, currentMP: 18, addtionalPower: 0 },
+	equipmentList: {
+		keys: [1, 2, 3, 4, 5],
+		values: [50, 50, 136, 137, 138].map(contentId => ({
+			contentId,
+			count: 1,
+		})),
+	},
 });
 
-// the parts of a save slot that the pages read
+// the parts of a save slot of Final Fantasy III that the pages read
 export const slot = {
 	id: 1,
 	pictureData: picture,
@@ -35,11 +42,11 @@ export const slot = {
 		},
 		normalOwnedItemList: {
 			target: [
-				{ contentId: 1, count: 3 },
-				{ contentId: 2, count: 99 },
+				{ contentId: 2, count: 3 },
+				{ contentId: 3, count: 99 },
 			],
 		},
-		importantOwendItemList: { target: [{ contentId: 501, count: 1 }] },
+		importantOwendItemList: { target: [{ contentId: 38, count: 1 }] },
 		cheatSettingsData: {
 			isEnableEncount: true,
 			isHpIncreaseByFightCount: false,

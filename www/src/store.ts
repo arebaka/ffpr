@@ -3,6 +3,14 @@ import type { Bestiary, Config, Data, Master, Type } from 'ffpr';
 import { createStore, produce, unwrap } from 'solid-js/store';
 
 import {
+	type Game,
+	games,
+	gamesOfBestiary,
+	gamesOfSlot,
+	pickGame,
+	tables,
+} from './names';
+import {
 	bestiarySchema,
 	dataSchema,
 	platformLabels,
@@ -31,11 +39,21 @@ export const kindLabels: Record<Kind, string> = {
 	other: 'Save data',
 };
 
-const [state, setState] = createStore<{ file: Opened | undefined }>({
-	file: undefined,
-});
+// the game outlives the file: saves of a game are usually opened one by one
+const [state, setState] = createStore<{
+	file: Opened | undefined;
+	game: Game | undefined;
+}>({ file: undefined, game: undefined });
 
 export const opened = () => state.file;
+
+export const game = () => state.game;
+
+export function setGame(value: Game | undefined) {
+	setState({ game: value });
+}
+
+export const names = () => state.game && tables[state.game];
 
 export const slot = () =>
 	state.file?.kind === 'slot' ? state.file.data : undefined;
@@ -57,6 +75,20 @@ function identify(data: Data): Contents {
 		return { kind: 'settings', data: settingsData.data };
 	}
 	return { kind: 'other', data };
+}
+
+function gamesOf(contents: Contents): readonly Game[] {
+	switch (contents.kind) {
+		case 'slot': {
+			return gamesOfSlot(contents.data);
+		}
+		case 'bestiary': {
+			return gamesOfBestiary(contents.data);
+		}
+		default: {
+			return games;
+		}
+	}
 }
 
 const BASE64 = /^[\d+/=A-Za-z]+$/u;
@@ -92,6 +124,7 @@ export async function open(file: File, platform?: Type): Promise<Kind> {
 	const contents = identify(data);
 	setState({
 		file: { ...contents, name: file.name, platform: type, modified: false },
+		game: pickGame(gamesOf(contents), state.game),
 	});
 	return contents.kind;
 }

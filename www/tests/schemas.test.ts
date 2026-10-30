@@ -1,11 +1,12 @@
 import { describe, expect, test } from 'vitest';
 
 import {
-	itemSchema,
 	itemsSearchSchema,
 	jsonSchema,
+	namesSchema,
+	newItemSchema,
 	overviewSchema,
-} from '../src/schemas';
+} from '@/schemas';
 
 const overview = {
 	owendGil: 12_345,
@@ -45,16 +46,43 @@ describe('overview', () => {
 });
 
 describe('other forms', () => {
-	test('an item stack holds 1 to 99', () => {
-		expect(itemSchema.safeParse({ contentId: 1, count: 99 }).success).toBe(
-			true,
-		);
-		expect(itemSchema.safeParse({ contentId: 1, count: 100 }).success).toBe(
-			false,
-		);
-		expect(itemSchema.safeParse({ contentId: 0, count: 1 }).success).toBe(
-			false,
-		);
+	test('a new item is known, free and its stack holds 1 to 99', () => {
+		const resolve = (text: string) =>
+			text === 'Potion' ? 2 : text === 'Unused' ? 0 : undefined;
+		const schema = newItemSchema(resolve, id => id === 3);
+		const accepted = (item: string, count: number) =>
+			schema.safeParse({ item, count }).success;
+
+		expect(accepted('Potion', 99)).toBe(true);
+		expect(accepted('Potion', 100)).toBe(false);
+		expect(accepted('Unused', 1)).toBe(false);
+		expect(accepted('Excalipoor', 1)).toBe(false);
+		expect(
+			newItemSchema(
+				() => 3,
+				id => id === 3,
+			).safeParse({
+				item: 'Tent',
+				count: 1,
+			}).success,
+		).toBe(false);
+	});
+
+	test('a table of names has all sections and only strings', () => {
+		const section = { 2: 'Potion' };
+		const table = {
+			items: section,
+			keyItems: section,
+			empty: section,
+			monsters: section,
+		};
+		expect(namesSchema.safeParse(table).success).toBe(true);
+		expect(
+			namesSchema.safeParse({ ...table, monsters: undefined }).success,
+		).toBe(false);
+		expect(
+			namesSchema.safeParse({ ...table, items: { 2: 7 } }).success,
+		).toBe(false);
 	});
 
 	test('JSON must be an object', () => {

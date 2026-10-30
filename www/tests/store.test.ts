@@ -15,12 +15,16 @@ import {
 	detect,
 	download,
 	editSlot,
+	game,
+	names,
 	open,
 	opened,
 	replace,
+	setGame,
 	slot as openSlot,
 	toJson,
-} from '../src/store';
+} from '@/store';
+
 import { bestiary, slot } from './saves';
 
 const file = async (data: Data, platform: Type, name = 'save') =>
@@ -30,6 +34,7 @@ const bytes = (text: string) => new TextEncoder().encode(text);
 
 beforeEach(() => {
 	close();
+	setGame(undefined);
 });
 
 afterEach(() => {
@@ -64,6 +69,40 @@ describe('open', () => {
 		);
 		const other = { level: 1 } as unknown as Data;
 		expect(await open(await file(other, 'playstation'))).toBe('other');
+	});
+
+	test('the game of a slot is recognized', async () => {
+		await open(await file(slot, 'switch'));
+		expect(game()).toBe('III');
+		expect(names()?.keyItems[38]).toBe('Canoe');
+	});
+
+	test('the last game settles a bestiary that fits several', async () => {
+		await open(await file(bestiary, 'pc'));
+		expect(game()).toBeUndefined();
+
+		setGame('IV');
+		await open(await file(bestiary, 'pc'));
+		expect(game()).toBe('IV');
+	});
+
+	test('the last game is forgotten if the bestiary does not fit', async () => {
+		setGame('I');
+		const keys = [1, 300];
+		const data = {
+			...bestiary,
+			monsterDefeats: { keys, values: [1, 1] },
+		} as unknown as Data;
+		await open(await file(data, 'pc'));
+		expect(game()).toBeUndefined();
+	});
+
+	test('the game outlives the file and other kinds of data', async () => {
+		await open(await file(slot, 'switch'));
+		close();
+		const other = { level: 1 } as unknown as Data;
+		await open(await file(other, 'playstation'));
+		expect(game()).toBe('III');
 	});
 
 	test('a save of another platform is rejected', async () => {

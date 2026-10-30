@@ -2,7 +2,7 @@ import { createSignal, type JSX } from 'solid-js';
 import { render } from 'solid-js/web';
 import { afterEach, assert, describe, expect, test, vi } from 'vitest';
 
-import { EditForm, Select } from '../src/ui';
+import { EditForm, Select } from '@/ui';
 
 let dispose: (() => void) | undefined;
 

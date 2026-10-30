@@ -8,15 +8,18 @@ import {
 import type { Type } from 'ffpr';
 import { createSignal, For, Show } from 'solid-js';
 
+import { gameOptions } from '../names';
 import { platformLabels, platformOptions } from '../schemas';
 import {
 	close,
 	download,
+	game,
 	type Kind,
 	kindLabels,
 	message,
 	type Opened,
 	opened,
+	setGame,
 } from '../store';
 import { Panel, Select } from '../ui';
 import { rootRoute } from './root';
@@ -69,6 +72,13 @@ function FileHeader(props: { file: Opened }) {
 					, <span class='nes-text is-warning'>changed</span>
 				</Show>
 			</p>
+			<Show
+				when={
+					props.file.kind === 'slot' || props.file.kind === 'bestiary'
+				}
+			>
+				<GameSelect />
+			</Show>
 			<div class='file-actions'>
 				<Download platform={props.file.platform} />
 				<button
@@ -82,6 +92,24 @@ function FileHeader(props: { file: Opened }) {
 				</button>
 			</div>
 		</Panel>
+	);
+}
+
+function GameSelect() {
+	return (
+		<div class='game'>
+			<Select
+				label='Game'
+				value={game() ?? ''}
+				options={gameOptions}
+				onChange={value => {
+					setGame(value === '' ? undefined : value);
+				}}
+			/>
+			<Show when={game() === undefined}>
+				<p>Choose the game to see the names of items and monsters.</p>
+			</Show>
+		</div>
 	);
 }
 

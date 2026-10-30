@@ -32,6 +32,25 @@ const slotShape = z.looseObject({
 	}),
 });
 
+const names = z.record(z.string(), z.string());
+
+export const namesSchema = z.object({
+	items: names,
+	keyItems: names,
+	empty: names,
+	monsters: names,
+});
+
+// the game always writes it, but the pages do not depend on it
+export const equipmentSchema = z
+	.object({
+		equipmentList: z.object({
+			values: z.array(z.object({ contentId: z.number() })),
+		}),
+	})
+	.transform(character => character.equipmentList.values)
+	.catch([]);
+
 const bestiaryShape = z.looseObject({
 	monsterDefeats: z.looseObject({
 		keys: z.array(z.number()),
@@ -121,10 +140,23 @@ export const boosterSchema = z.object({
 	parameterUpRate: rate,
 });
 
-export const itemSchema = z.object({
-	contentId: z.int(whole).min(1, 'Enter 1 or more').max(INT32, 'Too large'),
-	count: itemCount,
-});
+const contentId = z
+	.int('Enter a name or an ID')
+	.min(1, 'Enter 1 or more')
+	.max(INT32, 'Too large');
+
+export const newItemSchema = (
+	resolve: (text: string) => number | undefined,
+	taken: (id: number) => boolean,
+) =>
+	z.object({
+		item: z
+			.string()
+			.transform(text => resolve(text))
+			.pipe(contentId)
+			.refine(id => !taken(id), 'The item is already in the list'),
+		count: itemCount,
+	});
 
 export const jsonSchema = z.object({
 	text: z.string().refine(text => {

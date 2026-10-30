@@ -5,8 +5,9 @@ on:
     branches: [master]
     paths:
       - src/**
-      - www/**
+      - res/**
       - docs/**
+      - www/**
       - README.md
       - package.json
       - bun.lock

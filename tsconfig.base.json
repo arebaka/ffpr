@@ -9,6 +9,10 @@
 		"noFallthroughCasesInSwitch": true,
 		"verbatimModuleSyntax": true,
 		"skipLibCheck": true,
-		"sourceMap": false
+		"sourceMap": false,
+		"paths": {
+			"@/*": ["./src/*"],
+			"@names/*": ["./res/names/*"]
+		}
 	}
 }

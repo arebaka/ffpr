@@ -1,0 +1,324 @@
+items:
+  16: Potion
+  17: Antidote
+  18: Gold Needle
+  19: Cross
+  20: Maiden's Kiss
+  21: Mallet
+  22: Eye Drops
+  23: Phoenix Down
+  24: Elixir
+  25: Ether
+  26: Hi-Potion
+  27: Cottage
+  28: Wind Flute
+  29: Gaia Drum
+  30: Garlic
+  31: Unicorn Horn
+  32: Antarctic Wind
+  33: Sage's Wisdom
+  34: Saint's Spirit
+  35: Hermes's Shoes
+  36: Spider Silk
+  37: Bell of Silence
+  38: Hourglass
+  39: Death Idol
+  40: Bacchus's Wine
+  41: Acid Phial
+  42: Sleepgrass
+  43: Conch Shell
+  44: Betrayal Fang
+  45: Mythril Mirror
+  46: Hellfire
+  48: Knife
+  49: Dagger
+  50: Mythril Knife
+  51: Main Gauche
+  52: Orichalcum
+  53: Ripper
+  54: Cat Claws
+  55: Staff
+  56: Mace
+  57: Mythril Mace
+  58: Werebuster
+  59: Mage's Staff
+  60: Power Staff
+  61: Wizard's Staff
+  62: Healing Staff
+  63: Diamond Mace
+  64: Javelin
+  65: Spear
+  66: Mythril Spear
+  67: Trident
+  68: Demon Spear
+  69: Flame Lance
+  70: Ice Lance
+  71: Thunder Spear
+  72: Holy Lance
+  73: Broadsword
+  74: Longsword
+  75: Mythril Sword
+  76: Ancient Sword
+  77: Sleep Blade
+  78: Wing Sword
+  79: Blood Sword
+  80: Gaia Blade
+  81: Flame Sword
+  82: Ice Brand
+  83: Defender
+  84: Sun Blade
+  85: Excalibur
+  86: Masamune
+  87: Axe
+  88: Battle Axe
+  89: Mythril Axe
+  90: Demon Axe
+  91: Ogrekiller
+  92: Poison Axe
+  93: Rune Axe
+  94: Bow
+  95: Longbow
+  96: Mythril Bow
+  97: Dark Bow
+  98: Flame Bow
+  99: Ice Bow
+  101: Yoichi Bow
+  102: Buckler
+  103: Bronze Shield
+  104: Mythril Shield
+  105: Golden Shield
+  106: Ice Shield
+  107: Flame Shield
+  108: Diamond Shield
+  109: Dragon Shield
+  110: Aegis Shield
+  111: Leather Cap
+  112: Bronze Helm
+  113: Mythril Helm
+  114: Giant's Helm
+  115: Flame Helm
+  116: Diamond Helm
+  117: Genji Helm
+  118: Twist Headband
+  119: Gold Hairpin
+  120: Ribbon
+  121: Clothes
+  122: Leather Armor
+  123: Bronze Armor
+  124: Mythril Armor
+  125: Golden Armor
+  126: Knight's Armor
+  127: Flame Armor
+  128: Ice Armor
+  129: Diamond Armor
+  130: Dragon Armor
+  131: Genji Armor
+  132: Copper Cuirass
+  133: Silver Cuirass
+  134: Ruby Cuirass
+  135: Gold Cuirass
+  136: Diamond Cuirass
+  137: White Robe
+  138: Black Robe
+  139: Power Sash
+  140: Black Garb
+  141: Leather Gloves
+  142: Bronze Gloves
+  143: Mythril Gloves
+  144: Thief's Gloves
+  145: Giant's Gloves
+  146: Ice Gloves
+  147: Diamond Gloves
+  148: Genji Gloves
+  149: Protect Ring
+  150: Power Armlet
+  151: Fire Tome
+  152: Thunder Tome
+  153: Blizzard Tome
+  154: Scourge Tome
+  155: Drain Tome
+  156: Osmose Tome
+  157: Flare Tome
+  158: Sleep Tome
+  159: Stun Tome
+  160: Stop Tome
+  161: Confuse Tome
+  162: Blind Tome
+  163: Curse Tome
+  164: Toad Tome
+  165: Break Tome
+  166: Death Tome
+  167: Warp Tome
+  168: Berserk Tome
+  169: Haste Tome
+  170: Aura Tome
+  171: Cure Tome
+  172: Life Tome
+  173: Basuna Tome
+  174: Esuna Tome
+  175: Barrier Tome
+  176: Blink Tome
+  177: Protect Tome
+  178: Shell Tome
+  179: Wall Tome
+  180: Dispel Tome
+  181: Mini Tome
+  182: Silence Tome
+  183: Sap Tome
+  184: Fog Tome
+  185: Slow Tome
+  186: Swap Tome
+  187: Fear Tome
+  188: Holy Tome
+  189: Teleport Tome
+  190: Ultima Tome
+keyItems:
+  2: Ring
+  3: Canoe
+  4: Pass
+  5: Mythril
+  6: Snowcraft
+  7: Goddess's Bell
+  8: Egil's Torch
+  9: Sunfire
+  10: Pendant
+  11: Wyvern Egg
+  12: White Mask
+  13: Black Mask
+  14: Crystal Rod
+  15: Wyvern
+empty:
+  47: Empty
+  208: None
+  209: None
+  210: None
+  211: None
+monsters:
+  1: Leg Eater
+  2: Vampire Thorn
+  3: Hornet
+  4: Queen Bee
+  5: Snowman
+  6: Sasquatch
+  7: Icicle
+  8: Stalactite
+  9: Stalagmite
+  10: Sprinter
+  11: Phorusracos
+  12: Adamantoise
+  13: Land Turtle
+  14: Ogre
+  15: Ogre Mage
+  16: Ogre Chief
+  17: Dual Heads
+  18: Dual Deads
+  19: Wererat
+  20: Stunner
+  21: Dead Head
+  22: Skull
+  23: Zombie
+  24: Ghoul
+  25: Ghast
+  26: Revenant
+  27: Shadow
+  28: Wraith
+  29: Specter
+  30: Ghost
+  31: Antlion
+  32: Scissorjaws
+  33: Gottos
+  34: Beast Demon
+  35: Chimera
+  36: Rhyos
+  37: Chimera Sphinx
+  38: Death Flower
+  39: Devil's Bloom
+  40: Killer Fish
+  41: Bolt Fish
+  42: Helldiver
+  43: Cockatrice
+  44: Pirate
+  45: Buccaneer
+  46: Borghen
+  47: Zombie Borghen
+  48: Big Horn
+  49: Wild Horn
+  50: Poison Toad
+  51: Gigantoad
+  52: Sea Snake
+  53: Sea Dragon
+  54: Land Ray
+  55: Manta Ray
+  56: Flying Ray
+  57: Changer
+  58: Brain
+  59: Parasite
+  60: Mega Parasite
+  61: Werewolf
+  62: Devil Wolf
+  63: Imp
+  64: Pit Fiend
+  65: Malboro
+  66: Malboro Terra
+  67: Great Malboro
+  68: Basilisk
+  69: Salamander
+  70: Ice Lizard
+  71: Eyemoeba
+  72: Hecteyes
+  73: Roundworm
+  74: Sand Worm
+  75: Abyss Worm
+  76: Green Slime
+  77: Yellow Jelly
+  78: Red Mousse
+  79: Black Flan
+  80: Red Soul
+  81: Green Soul
+  82: Yellow Soul
+  83: Vampire Girl
+  84: Vampire Lady
+  85: Emperor
+  86: Imperial Shadow
+  87: Killer Mantis
+  88: Mantis King
+  89: Mantis Devil
+  90: Royal Guard
+  91: Black Knight
+  92: Death Rider
+  93: Wood Golem
+  94: Stone Golem
+  95: Mythril Golem
+  96: Goblin
+  97: Goblin Guard
+  98: Goblin Prince
+  99: Balloon
+  100: Grenade
+  101: Mine
+  102: Bomb
+  103: Soldier
+  104: Sergeant
+  105: Captain
+  106: General
+  107: Magician
+  108: Sorcerer
+  109: Wizard
+  110: Werepanther
+  111: Coeurl
+  112: Lamia
+  113: Lamia Queen
+  114: Hill Gigas
+  115: Fire Gigas
+  116: Ice Gigas
+  117: Thunder Gigas
+  118: Behemoth
+  119: King Behemoth
+  120: White Dragon
+  121: Green Dragon
+  122: Blue Dragon
+  123: Red Dragon
+  124: Iron Giant
+  125: Tiamat
+  126: Beelzebub
+  127: Astaroth
+  128: Emperor

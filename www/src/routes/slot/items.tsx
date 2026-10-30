@@ -2,12 +2,13 @@ import { createForm } from '@tanstack/solid-form';
 import { createRoute, Link } from '@tanstack/solid-router';
 import { createColumnHelper, createTable } from '@tanstack/solid-table';
 import type { Master } from 'ffpr';
-import { createMemo, createSignal, For, Show } from 'solid-js';
+import { createMemo, createSignal, createUniqueId, For, Show } from 'solid-js';
 
-import { itemCount, itemSchema, itemsSearchSchema } from '../../schemas';
-import { editSlot } from '../../store';
+import { findId, itemName } from '../../names';
+import { itemCount, itemsSearchSchema, newItemSchema } from '../../schemas';
+import { editSlot, names } from '../../store';
 import { CountInput, features, Search, Table } from '../../table';
-import { actionState, EditForm, NumberField, Panel } from '../../ui';
+import { actionState, EditForm, NumberField, Panel, TextField } from '../../ui';
 import { slotRoute, useSlot } from './slot';
 
 export const itemsRoute = createRoute({
@@ -24,6 +25,7 @@ const lists = {
 
 type List = keyof typeof lists;
 type Item = { contentId: number; count: number };
+type Row = Item & { name: string };
 
 const itemsOf = (data: Master, list: List): Item[] =>
 	data.userData[lists[list].key].target;
@@ -56,10 +58,11 @@ function Items() {
 	);
 }
 
-const helper = createColumnHelper<typeof features, Item>();
+const helper = createColumnHelper<typeof features, Row>();
 
 const columns = (list: List) =>
 	helper.columns([
+		helper.accessor('name', { header: 'Name', sortFn: 'basic' }),
 		helper.accessor('contentId', { header: 'ID', sortFn: 'basic' }),
 		helper.accessor('count', {
 			header: 'Count',
@@ -68,7 +71,7 @@ const columns = (list: List) =>
 			cell: info => (
 				<CountInput
 					value={info.row.original.count}
-					label={`Count of item ${info.row.original.contentId}`}
+					label={`Count of ${info.row.original.name}, ID ${info.row.original.contentId}`}
 					schema={itemCount}
 					onChange={count => {
 						editSlot(draft => {
@@ -88,7 +91,7 @@ const columns = (list: List) =>
 				<button
 					type='button'
 					class='nes-btn is-error'
-					aria-label={`Remove item ${info.row.original.contentId}`}
+					aria-label={`Remove ${info.row.original.name}, ID ${info.row.original.contentId}`}
 					onClick={() => {
 						editSlot(draft => {
 							itemsOf(draft, list).splice(info.row.index, 1);
@@ -103,15 +106,23 @@ const columns = (list: List) =>
 
 function ItemList(props: { list: List }) {
 	const data = useSlot();
-	// a new array when items are added or removed, counts are tracked by cells
-	const items = createMemo(() => [...itemsOf(data, props.list)]);
+	// counts are read lazily, so that editing one does not rebuild the rows
+	const rows = createMemo(() =>
+		itemsOf(data, props.list).map(item => ({
+			contentId: item.contentId,
+			name: itemName(names(), item.contentId),
+			get count() {
+				return item.count;
+			},
+		})),
+	);
 	const [query, setQuery] = createSignal('');
 
 	const table = createTable({
 		features,
 		columns: columns(props.list),
 		get data() {
-			return items();
+			return rows();
 		},
 		state: {
 			get globalFilter() {
@@ -125,7 +136,7 @@ function ItemList(props: { list: List }) {
 		<>
 			<Search
 				value={query()}
-				label='Find ID'
+				label='Find'
 				onInput={value => {
 					setQuery(value);
 				}}
@@ -133,24 +144,32 @@ function ItemList(props: { list: List }) {
 			<Table table={table} empty='No items.' />
 			<AddItem
 				list={props.list}
-				taken={id => items().some(item => item.contentId === id)}
+				taken={id => rows().some(row => row.contentId === id)}
 			/>
 		</>
 	);
 }
 
+const choices = (list: List) =>
+	(list === 'normal' ? names()?.items : names()?.keyItems) ?? {};
+
 function AddItem(props: { list: List; taken: (contentId: number) => boolean }) {
+	const suggestions = createUniqueId();
+	const resolve = (text: string) =>
+		findId(choices(props.list), text, props.taken);
 	const form = createForm(() => ({
-		defaultValues: { contentId: Number.NaN, count: 1 },
-		validators: {
-			onChange: itemSchema.refine(item => !props.taken(item.contentId), {
-				message: 'The item is already in the list',
-				path: ['contentId'],
-			}),
-		},
+		defaultValues: { item: '', count: 1 },
+		validators: { onChange: newItemSchema(resolve, props.taken) },
 		onSubmit: ({ value, formApi }) => {
+			const contentId = resolve(value.item);
+			if (contentId === undefined) {
+				return;
+			}
 			editSlot(draft => {
-				itemsOf(draft, props.list).push(value);
+				itemsOf(draft, props.list).push({
+					contentId,
+					count: value.count,
+				});
 			});
 			formApi.reset();
 		},
@@ -170,8 +189,14 @@ function AddItem(props: { list: List; taken: (contentId: number) => boolean }) {
 				>
 					<h4>Add an item</h4>
 					<div class='fields'>
-						<form.Field name='contentId'>
-							{field => <NumberField field={field} label='ID' />}
+						<form.Field name='item'>
+							{field => (
+								<TextField
+									field={field}
+									label='Name or ID'
+									list={suggestions}
+								/>
+							)}
 						</form.Field>
 						<form.Field name='count'>
 							{field => (
@@ -179,6 +204,15 @@ function AddItem(props: { list: List; taken: (contentId: number) => boolean }) {
 							)}
 						</form.Field>
 					</div>
+					<datalist id={suggestions}>
+						<For
+							each={[
+								...new Set(Object.values(choices(props.list))),
+							]}
+						>
+							{name => <option>{name}</option>}
+						</For>
+					</datalist>
 				</EditForm>
 			)}
 		</form.Subscribe>

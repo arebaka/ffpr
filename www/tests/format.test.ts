@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 
-import { formatDuration, formatNumber, parseDuration } from '../src/format';
+import { formatDuration, formatNumber, parseDuration } from '@/format';
 
 describe('format', () => {
 	test('play time is shown as H:MM:SS without fractions', () => {

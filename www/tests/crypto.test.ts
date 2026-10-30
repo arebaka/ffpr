@@ -3,7 +3,7 @@ import { pbkdf2Sync } from 'crypto';
 
 import { describe, expect, test } from 'vitest';
 
-import { pbkdf2Sync as shim } from '../src/shims/crypto';
+import { pbkdf2Sync as shim } from '@/shims/crypto';
 
 describe('node:crypto shim', () => {
 	test('pbkdf2Sync gives the same key as node:crypto', () => {

@@ -65,6 +65,31 @@ const fieldValue = (page: Page, label: string) =>
 const text = (page: Page, selector: string) =>
 	page.$eval(selector, element => element.textContent);
 
+const column = (page: Page, index: number) =>
+	page.$$eval(
+		'tbody tr',
+		(rows, cell) =>
+			rows.map(row => row.children[cell]?.textContent ?? '').join(),
+		index,
+	);
+
+const waitForColumn = (
+	page: Page,
+	index: number,
+	selector: string,
+	expected: string,
+) =>
+	page.waitForFunction(
+		(cell, value, input) =>
+			[...document.querySelectorAll('tbody tr')]
+				.map(row => row.children[cell]?.textContent ?? '')
+				.join() === value && document.querySelector(input) !== null,
+		{},
+		index,
+		expected,
+		selector,
+	);
+
 async function openSave(page: Page, url: string, file: string, hash: string) {
 	await page.goto(`${url}#/`);
 	const input = await page.waitForSelector('input[type=file]');
@@ -177,21 +202,83 @@ try {
 		assert(names.join() === 'Luneth,Arc', `names: ${names.join()}`);
 	});
 
-	await step('items and key items are listed', async () => {
+	await step('the game is recognized and items have names', async () => {
 		await page.click('nav a[href$="/slot/items"]');
 		await page.waitForSelector('tbody tr');
-		assert((await page.$$('tbody tr')).length === 2, 'items');
-		await page.click('section .tabs a:last-child');
-		await page.waitForFunction(
-			() => document.querySelectorAll('tbody tr').length === 1,
-		);
+		const chosen = await page.$eval('.game select', select => select.value);
+		assert(chosen === 'III', `game: ${chosen}`);
+		const names = await column(page, 0);
+		assert(names === 'Potion,Hi-Potion', `names: ${names}`);
 	});
 
-	await step('a PC bestiary opens', async () => {
+	await step('the search finds items by name and ID', async () => {
+		await page.type('#search', 'hi-p');
+		await waitForColumn(page, 1, '#search', '3');
+		await page.$eval('#search', input => {
+			const search = input as HTMLInputElement;
+			search.value = '';
+			search.dispatchEvent(new Event('input', { bubbles: true }));
+		});
+		await waitForColumn(page, 1, '#search', '2,3');
+	});
+
+	await step('an item is added by its name', async () => {
+		const options = await page.$$eval('.add datalist option', list =>
+			list.map(option => option.value),
+		);
+		assert(options.includes('Antidote'), 'no suggestions');
+		await page.type('.add input[type=text]', 'antidote');
+		await page.click('.add button[type=submit]');
+		await waitForColumn(page, 0, '.add', 'Potion,Hi-Potion,Antidote');
+		const ids = await column(page, 1);
+		assert(ids === '2,3,4', `ids: ${ids}`);
+	});
+
+	await step('an item in the list is not added twice', async () => {
+		await page.type('.add input[type=text]', 'potion');
+		await page.waitForSelector('.add .field-error');
+		const error = await text(page, '.add .field-error');
+		assert(error.includes('already'), `error: ${error}`);
+		await page.click('.add button[type=button]');
+	});
+
+	await step('key items have names', async () => {
+		await page.click('section .tabs a:last-child');
+		await waitForColumn(page, 0, '.add', 'Canoe');
+	});
+
+	await step('another game changes the names', async () => {
+		await page.select('.game select', 'I');
+		await waitForColumn(page, 0, '.add', 'Unknown');
+		await page.select('.game select', 'III');
+		await waitForColumn(page, 0, '.add', 'Canoe');
+	});
+
+	await step('a PC bestiary opens with the last game', async () => {
 		await openSave(page, url, join(dir, 'bestiary'), '#/bestiary');
 		const summary = await text(page, 'nav + section p');
 		assert(summary.startsWith('3 monsters'), `summary: ${summary}`);
 		assert((await page.$$('tbody tr')).length === 3, 'monsters');
+		const chosen = await page.$eval('.game select', select => select.value);
+		assert(chosen === 'III', `game: ${chosen}`);
+	});
+
+	await step('without a game the names are unknown', async () => {
+		await page.select('.game select', '');
+		await waitForColumn(page, 0, '.game p', 'Unknown,Unknown,Unknown');
+	});
+
+	await step('the chosen game names the monsters', async () => {
+		await page.select('.game select', 'I');
+		await waitForColumn(
+			page,
+			0,
+			'.game select',
+			'Goblin,Goblin Guard,Wolf',
+		);
+		assert((await page.$('.game p')) === null, 'the hint stays');
+		await page.type('#search', 'wolf');
+		await waitForColumn(page, 1, '#search', '3');
 	});
 
 	await step('a file that is not a save is rejected', async () => {

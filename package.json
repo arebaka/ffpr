@@ -1,6 +1,6 @@
 {
 	"name": "ffpr",
-	"version": "0.7.0",
+	"version": "0.8.0",
 	"description": "save editor for games of Final Fantasy Pixel Remaster",
 	"keywords": [
 		"editor",
@@ -77,6 +77,9 @@
 		"oxlint-tsgolint": "^7.0.2005",
 		"size-limit": "^14.3.0",
 		"typescript": "^7.0.2"
+	},
+	"overrides": {
+		"js-yaml": "^4.3.2"
 	},
 	"packageManager": "bun"
 }

@@ -71,10 +71,18 @@ They disagree only on an arrow function with one untyped parameter,
 in `src` give such a parameter a type.
 Exported functions and types need JSDoc: JSR builds the documentation from it.
 
+Tests and the editor use the path aliases of `tsconfig.base.json`
+and `www/tsconfig.json`: `@/` is `src` of the current package,
+`@names/` is `res/names`.
+Paths of a tsconfig are not merged, a new alias goes into both files.
+`src` of the library keeps relative imports:
+`tsc` does not rewrite aliases, they would break the published package.
+
 ## Web editor
 
 The editor in `www` is a workspace of its own.
 It is not published, npm and JSR get only the library.
+The names it shows are in `res/names`, they are not published either.
 It imports `ffpr` from `src` through the `paths` of `www/tsconfig.json`,
 so the library does not have to be built first.
 In the browser `node:buffer` is replaced with the `buffer` package,

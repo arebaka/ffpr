@@ -4,12 +4,14 @@
 		"module": "esnext",
 		"moduleResolution": "bundler",
 		"lib": ["ESNext", "DOM", "DOM.Iterable"],
-		"types": ["node", "vite/client"],
+		"types": ["node", "vite/client", "@modyfi/vite-plugin-yaml/modules"],
 		"jsx": "preserve",
 		"jsxImportSource": "solid-js",
 		"noEmit": true,
 		"paths": {
-			"ffpr": ["../src/index.ts"]
+			"ffpr": ["../src/index.ts"],
+			"@/*": ["./src/*"],
+			"@names/*": ["../res/names/*"]
 		}
 	},
 	"include": ["vite.config.ts", "src"]

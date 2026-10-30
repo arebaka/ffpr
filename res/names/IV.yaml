@@ -1,0 +1,452 @@
+items:
+  2: Potion
+  3: Hi-Potion
+  4: X-Potion
+  5: Ether
+  6: Dry Ether
+  7: Elixir
+  9: Phoenix Down
+  10: Gold Needle
+  11: Maiden's Kiss
+  12: Mallet
+  13: Diet Food
+  14: Echo Herbs
+  15: Eye Drops
+  16: Antidote
+  17: Cross
+  18: Remedy
+  19: Alarm Clock
+  20: Unicorn Horn
+  21: Tent
+  22: Cottage
+  23: Emergency Exit
+  24: Dwarven Bread
+  25: Gysahl Greens
+  26: Gysahl Whistle
+  27: Golden Apple
+  28: Silver Apple
+  29: Soma Drop
+  30: Siren
+  33: Red Fang
+  34: White Fang
+  35: Blue Fang
+  36: Bomb Fragment
+  37: Bomb Arm
+  38: Antarctic Wind
+  39: Arctic Wind
+  40: Zeus's Wrath
+  41: Rage of the Gods
+  42: Gaia Drum
+  43: Bomb Core
+  44: Stardust
+  45: Lilith's Kiss
+  46: Vampire Fang
+  47: Spider's Silk
+  48: Bell of Silence
+  49: Coeurl Whisker
+  50: Bestiary
+  51: Hourglass
+  52: Silver Hourglass
+  53: Gold Hourglass
+  54: Bacchus's Cider
+  55: Hermes Shoes
+  56: Decoy
+  57: Light Curtain
+  58: Lunar Curtain
+  59: Crystal
+  76: Goblin
+  77: Bomb
+  78: Cockatrice
+  79: Mind Flayer
+  128: Dark Sword
+  129: Shadowblade
+  130: Deathbringer
+  131: Sword of Legend
+  132: Light Sword
+  133: Excalibur
+  134: Ragnarok
+  135: Ancient Sword
+  136: Blood Sword
+  137: Mythril Sword
+  138: Sleep Blade
+  139: Flame Sword
+  140: Icebrand
+  141: Gorgon Blade
+  142: Avenger
+  143: Defender
+  148: Spear
+  149: Wind Spear
+  150: Fire Lance
+  151: Ice Lance
+  152: Blood Lance
+  153: Gungnir
+  154: Wyvern Lance
+  155: Holy Lance
+  156: Mythril Knife
+  157: Dancing Dagger
+  158: Mage Masher
+  159: Knife
+  160: Dreamer's Harp
+  161: Lamia's Harp
+  162: Fire Claw
+  163: Ice Claw
+  164: Thunder Claw
+  165: Fairy Claw
+  166: Hell Claw
+  167: Cat Claw
+  168: Wooden Hammer
+  169: Mythril Hammer
+  170: Gaia Hammer
+  171: Dwarven Axe
+  172: Ogrekiller
+  173: Poison Axe
+  174: Rune Axe
+  175: Kunai
+  176: Ashura
+  177: Kotetsu
+  178: Kikuichimonji
+  179: Murasame
+  180: Masamune
+  181: Rod
+  182: Flame Rod
+  183: Ice Rod
+  184: Thunder Rod
+  185: Lilith Rod
+  186: Rod of Change
+  187: Fairy Rod
+  188: Stardust Rod
+  189: Staff
+  190: Healing Staff
+  191: Mythril Staff
+  192: Power Staff
+  193: Kinesis Staff
+  194: Sage's Staff
+  195: Rune Staff
+  196: Bow
+  198: Great Bow
+  199: Killer Bow
+  200: Elven Bow
+  201: Yoichi's Bow
+  202: Artemis's Bow
+  203: Medusa Arrow
+  204: Iron Arrow
+  205: Holy Arrow
+  206: Fire Arrow
+  207: Ice Arrow
+  208: Thunder Arrow
+  209: Blinding Arrow
+  210: Poison Arrow
+  211: Mute Arrow
+  212: Angel Arrow
+  213: Yoichi Arrow
+  214: Artemis Arrow
+  215: Whip
+  216: Chain Whip
+  217: Blitz Whip
+  218: Flame Whip
+  219: Dragon's Whisker
+  220: Boomerang
+  221: Moonring Blade
+  222: Shuriken
+  223: Fuma Shuriken
+  228: Iron Shield
+  229: Dark Shield
+  230: Demon Shield
+  231: Light Shield
+  232: Mythril Shield
+  233: Flame Shield
+  234: Ice Shield
+  235: Diamond Shield
+  236: Aegis Shield
+  237: Genji Shield
+  238: Dragon Shield
+  239: Crystal Shield
+  241: Leather Cap
+  242: Headband
+  243: Feathered Cap
+  244: Iron Helm
+  245: Wizard's Hat
+  246: Green Beret
+  247: Dark Helm
+  248: Hades Helm
+  249: Sage's Miter
+  250: Black Cowl
+  251: Demon Helm
+  252: Light Helm
+  253: Gold Hairpin
+  254: Mythril Helm
+  255: Diamond Helm
+  256: Ribbon
+  257: Genji Helm
+  258: Dragon Helm
+  259: Crystal Helm
+  260: Glass Mask
+  262: Clothes
+  263: Prisoners' Wear
+  264: Leather Garb
+  265: Bard's Tunic
+  266: Gaia Gear
+  267: Iron Armor
+  268: Dark Armor
+  269: Sage's Surplice
+  270: Kenpo Gi
+  271: Hades Armor
+  272: Black Robe
+  273: Demon Armor
+  274: Black Belt Gi
+  275: Knight's Armor
+  276: Light Robe
+  277: Mythril Armor
+  278: Flame Mail
+  279: Power Sash
+  280: Ice Armor
+  281: White Robe
+  282: Diamond Armor
+  283: Minerva Bustier
+  284: Genji Armor
+  285: Dragon Mail
+  286: Black Garb
+  287: Crystal Mail
+  288: Adamant Armor
+  290: Ruby Ring
+  291: Cursed Ring
+  292: Iron Gloves
+  293: Dark Gloves
+  294: Iron Armlet
+  295: Power Armlet
+  296: Hades Gloves
+  297: Demon Gloves
+  298: Silver Armlet
+  299: Gauntlets
+  300: Rune Armlet
+  301: Mythril Gloves
+  302: Diamond Armlet
+  303: Diamond Gloves
+  304: Genji Gloves
+  305: Dragon Gloves
+  306: Giant's Gloves
+  307: Crystal Gloves
+  308: Protect Ring
+  309: Crystal Ring
+  520: Grimoire
+  521: Crossbow
+keyItems:
+  60: Membership Pass
+  62: Frying Pan
+  63: Adamantite
+  64: Sand Ruby
+  65: Dark Matter
+  66: Earth Crystal
+  67: Rat Tail
+  68: Baron Key
+  69: Twin Harp
+  70: Pink Tail
+  71: Bomb Ring
+  72: Magma Rock
+  73: Dark Crystal
+  74: Luca's Necklace
+  75: Dr. Lugae's Key
+empty:
+  127: Empty
+  224: None
+  225: None
+  226: None
+  227: None
+monsters:
+  1: Goblin
+  2: Basilisk
+  3: Helldiver
+  4: Floating Eyeball
+  5: Insectus
+  6: Cave Bat
+  7: Treant
+  8: Sword Rat
+  9: Tiny Mage
+  10: Desert Sahagin
+  11: Flying Eyes
+  12: Hundlegs
+  13: Sand Worm
+  14: Gigantoad
+  15: Vile Shell
+  16: Zombie
+  17: Killer Fish
+  18: Blood Flower
+  19: Toadgre
+  20: Red Mousse
+  21: Yellow Jelly
+  22: Sahagin
+  23: Leshy
+  24: Chrysalis
+  25: Goblin Captain
+  26: Black Lizard
+  27: Adamantoise
+  28: Domovoi
+  29: Purple Bavarois
+  30: Baron Soldier
+  31: General
+  32: Gatlinger
+  33: Li'l Murderer
+  34: Death Flower
+  35: Spirit
+  36: Skeleton
+  37: Cockatrice
+  38: Gargoyle
+  39: Roc Baby
+  40: Belphegor
+  41: Zu
+  42: Water Bug
+  43: Alligator
+  44: Splasher
+  45: Baron Warrior
+  46: Captain
+  47: Soul
+  48: Bloodbones
+  49: Ghoul
+  50: Skuldier
+  51: Revenant
+  52: Draculady
+  53: Cave Naga
+  54: Bone Dragon
+  55: Electrofish
+  56: Gigas Gator
+  57: Hydra
+  58: Flood Worm
+  59: Baron Guard
+  60: Lamia
+  61: Hell Needle
+  62: Twin Snake
+  63: Grudger
+  64: Mind Flayer
+  65: Naga
+  66: Ogre
+  67: Cait Sith
+  68: Black Knight
+  69: Centaur Knight
+  70: Miss Vamp
+  71: Puppeteer
+  72: Puppet
+  73: Gloomwing
+  74: Death Shell
+  75: Screamer
+  76: Warrior
+  77: Armadillo
+  78: Soldieress
+  79: Ghost Knight
+  80: King Naga
+  81: Medusa
+  82: Dinozombie
+  83: Magma Tortoise
+  85: Evil Dreamer
+  86: Bomb
+  87: Gray Bomb
+  88: Chimera
+  89: Hell Turtle
+  90: Ironback
+  91: Fiery Hound
+  92: Gorgon
+  93: Stone Golem
+  94: Lilith
+  95: Lamia Matriarch
+  96: Tiny Toad
+  97: Mors
+  98: Roc
+  99: Sorcerer
+  100: Mad Ogre
+  101: Evil Doll
+  102: Bloody Bat
+  103: Arachne
+  104: Fiery Knight
+  105: Beamer
+  106: Balloon
+  107: Dark Grenade
+  108: Plague
+  109: Last Arm
+  110: Coeurl
+  111: Mech Dragon
+  112: Tarantula
+  113: Gremlin
+  114: Undergrounder
+  115: Abyss Worm
+  116: Bloody Eye
+  117: Crawler
+  118: Ice Lizard
+  119: Hell Flapper
+  120: Evil Bat
+  121: Cold Beast
+  122: Summoner
+  123: Sorceress
+  124: Trap Door
+  125: Bog Witch
+  126: Mammon
+  127: Chimera Brain
+  128: Lunar Virus
+  129: Zemus's Breath
+  130: White Mousse
+  131: Black Flan
+  132: Zemus's Mind
+  133: Mythril Golem
+  134: Green Dragon
+  135: Flan Princess
+  136: Security Eye
+  137: Mech Soldier
+  138: Giant Soldier
+  139: Selene Guardian
+  140: Malboro
+  141: Silver Dragon
+  142: Yellow Dragon
+  143: Mini Satana
+  144: Eukaryote
+  145: Wicked Mask
+  146: Centaurion
+  147: Giant Warrior
+  148: Steel Golem
+  149: Ahriman
+  150: Lunasaur
+  151: Searcher
+  152: Dark Sage
+  153: Dark Bahamut
+  154: Prokaryote
+  155: Ogopogo
+  156: Blue Dragon
+  157: Gold Dragon
+  158: Thunder Dragon
+  159: White Dragon
+  160: Red Dragon
+  161: Behemoth
+  162: Mist Dragon
+  163: Octomammoth
+  164: Antlion
+  165: Mom Bomb
+  166: Scarmiglione
+  167: Scarmiglione
+  168: Baigan
+  169: Right Arm
+  170: Left Arm
+  171: Cagnazzo
+  173: Dark Elf
+  174: Sandy
+  175: Cindy
+  176: Mindy
+  178: Barbariccia
+  179: Calco
+  180: Calcobrena
+  181: Golbez
+  183: Doctor
+  184: Barnabas
+  185: Dr. Lugae
+  188: Rubicante
+  189: Odin
+  190: Leviathan
+  191: Bahamut
+  192: Demon Wall
+  193: Asura
+  196: Dark Dragon
+  198: CPU
+  199: Defense Node
+  201: Zeromus
+  202: Zeromus
+  211: Brina
+  212: Skullnant
+  213: Barnabas-Z
+  214: Attack Node
+  224: Mystery Egg

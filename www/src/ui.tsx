@@ -50,6 +50,7 @@ function Input<T extends number | string>(props: {
 	parse: (input: HTMLInputElement) => T;
 	step?: string;
 	placeholder?: string | undefined;
+	list?: string | undefined;
 }) {
 	const id = createUniqueId();
 	const error = () => errorText(props.field().state.meta.errors);
@@ -63,6 +64,8 @@ function Input<T extends number | string>(props: {
 				min={props.type === 'number' ? '0' : undefined}
 				step={props.step}
 				placeholder={props.placeholder}
+				list={props.list}
+				autocomplete={props.list === undefined ? undefined : 'off'}
 				value={props.field().state.value}
 				aria-invalid={error() !== ''}
 				aria-describedby={error() === '' ? undefined : `${id}-error`}
@@ -99,6 +102,7 @@ export function TextField(props: {
 	field: () => FieldLike<string>;
 	label: string;
 	placeholder?: string;
+	list?: string;
 }) {
 	return (
 		<Input
@@ -106,6 +110,7 @@ export function TextField(props: {
 			label={props.label}
 			type='text'
 			placeholder={props.placeholder}
+			list={props.list}
 			parse={input => input.value}
 		/>
 	);

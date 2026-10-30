@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 
-import { decrypt, encrypt } from '../src/crypt.js';
+import { decrypt, encrypt } from '@/crypt.js';
 
 const data = Buffer.from('{"owendGil":500}');
 

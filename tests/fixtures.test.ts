@@ -6,10 +6,10 @@ import { describe, expect, test } from 'bun:test';
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { basename, join } from 'node:path';
 
-import { decrypt } from '../src/crypt.js';
-import { pack, unpack } from '../src/index.js';
-import type { Type } from '../src/index.js';
-import { decompress } from '../src/zip.js';
+import { decrypt } from '@/crypt.js';
+import { pack, unpack } from '@/index.js';
+import type { Type } from '@/index.js';
+import { decompress } from '@/zip.js';
 
 const TYPES: Type[] = ['switch', 'pc', 'playstation'];
 const ROOT = join(import.meta.dirname, 'fixtures');

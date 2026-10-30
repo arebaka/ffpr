@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { deflateSync } from 'node:zlib';
 
-import { compress, decompress } from '../src/zip.js';
+import { compress, decompress } from '@/zip.js';
 
 const data = Buffer.from('{"owendGil":500}');
 

@@ -71,6 +71,16 @@ main {
 	overflow-wrap: anywhere;
 }
 
+.game {
+	@include row;
+
+	margin-bottom: 1rem;
+
+	> p {
+		margin: 0;
+	}
+}
+
 .file-actions {
 	@include row;
 

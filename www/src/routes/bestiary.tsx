@@ -5,7 +5,7 @@ import { createMemo, createSignal, Show } from 'solid-js';
 
 import { formatNumber } from '../format';
 import { amount } from '../schemas';
-import { bestiary, editBestiary, opened } from '../store';
+import { bestiary, editBestiary, names, opened } from '../store';
 import { CountInput, features, Search, Table } from '../table';
 import { Panel } from '../ui';
 import { fileRoute } from './file';
@@ -21,12 +21,18 @@ export const bestiaryRoute = createRoute({
 	component: BestiaryPage,
 });
 
-type Defeats = { index: number; monsterId: number; count: number };
+type Defeats = {
+	index: number;
+	monsterId: number;
+	name: string;
+	count: number;
+};
 
 const helper = createColumnHelper<typeof features, Defeats>();
 
 const columns = helper.columns([
-	helper.accessor('monsterId', { header: 'Monster ID', sortFn: 'basic' }),
+	helper.accessor('name', { header: 'Monster', sortFn: 'basic' }),
+	helper.accessor('monsterId', { header: 'ID', sortFn: 'basic' }),
 	helper.accessor('count', {
 		header: 'Defeated',
 		sortFn: 'basic',
@@ -34,7 +40,7 @@ const columns = helper.columns([
 		cell: info => (
 			<CountInput
 				value={info.row.original.count}
-				label={`Defeats of monster ${info.row.original.monsterId}`}
+				label={`Defeats of ${info.row.original.name}, ID ${info.row.original.monsterId}`}
 				schema={amount}
 				onChange={count => {
 					editBestiary(draft => {
@@ -59,9 +65,11 @@ function DefeatsTable(props: { data: Bestiary }) {
 	// counts are read lazily, so that editing one does not rebuild the rows
 	const rows = createMemo(() => {
 		const defeats = props.data.monsterDefeats;
+		const monsters = names()?.monsters;
 		return defeats.keys.map((monsterId, index) => ({
 			index,
 			monsterId,
+			name: monsters?.[monsterId] ?? 'Unknown',
 			get count() {
 				return defeats.values[index] ?? 0;
 			},
@@ -92,7 +100,7 @@ function DefeatsTable(props: { data: Bestiary }) {
 			</p>
 			<Search
 				value={query()}
-				label='Find ID'
+				label='Find'
 				onInput={value => {
 					setQuery(value);
 				}}
