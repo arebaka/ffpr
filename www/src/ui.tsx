@@ -49,7 +49,7 @@ function Input<T extends number | string>(props: {
 	type: 'number' | 'text';
 	parse: (input: HTMLInputElement) => T;
 	step?: string;
-	placeholder?: string;
+	placeholder?: string | undefined;
 }) {
 	const id = createUniqueId();
 	const error = () => errorText(props.field().state.meta.errors);

@@ -6,10 +6,11 @@
 
 ![GitHub License](https://img.shields.io/github/license/arebaka/ffpr?style=flat)
 ![GitHub Created At](https://img.shields.io/github/created-at/arebaka/ffpr?style=flat)
-[![Lines of code](https://img.shields.io/endpoint?url=https%3A%2F%2Fghloc.dev%2Fapi%2Farebaka%2Fffpr%2Fbadge&style=flat&label=lines%20of%20code&color=blue)](https://ghloc.dev/arebaka/ffpr)
 ![NPM Version](https://img.shields.io/npm/v/ffpr?style=flat)
 ![NPM Downloads](https://img.shields.io/npm/d18m/ffpr?style=flat)
 ![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/ffpr?style=flat)
+[![Lines of code](https://img.shields.io/endpoint?url=https%3A%2F%2Fghloc.dev%2Fapi%2Farebaka%2Fffpr%2Fbadge&style=flat&label=lines%20of%20code&color=blue)](https://ghloc.dev/arebaka/ffpr)
+[![Codecov](https://img.shields.io/codecov/c/github/arebaka/ffpr?style=flat)](https://codecov.io/gh/arebaka/ffpr)
 
 - All six games: Final Fantasy I–VI.
 - Saves from Nintendo Switch, PC and PlayStation through one API.
@@ -43,6 +44,9 @@ All functions are async. `type` is the platform:
 - `pack(data, type?)` encodes data into a `Buffer`.
 
 `load` and `unpack` throw an error if the file is not a save of the given platform.
+
+All functions and types of save data are described in the
+[API reference](https://arebaka.github.io/ffpr/docs/).
 
 ## Installation
 

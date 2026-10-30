@@ -1,6 +1,6 @@
 {
 	"name": "ffpr",
-	"version": "0.6.0",
+	"version": "0.7.0",
 	"description": "save editor for games of Final Fantasy Pixel Remaster",
 	"keywords": [
 		"editor",
@@ -26,6 +26,7 @@
 		"url": "https://www.patreon.com/arelive"
 	},
 	"workspaces": [
+		"docs",
 		"www"
 	],
 	"type": "module",
@@ -37,22 +38,28 @@
 		"format": "oxfmt --check",
 		"format:write": "oxfmt --write",
 		"test": "bun test",
-		"check": "tsc --noEmit && bun run lint && bun run format && bun run test",
+		"coverage": "bun test --coverage",
 		"clean": "rm -rf dist",
 		"build": "bun run clean && tsc",
+		"size": "bun run build && size-limit",
+		"check": "tsc --noEmit && bun run lint && bun run format && bun run test && bun run coverage && bun run size",
+		"docs:build": "bun run --cwd docs build",
 		"www:test": "bun run --cwd www test",
 		"www:check": "bun run --cwd www check",
 		"www:clean": "bun run --cwd www clean",
 		"www:build": "bun run --cwd www build",
 		"www:dev": "bun run --cwd www dev",
 		"www:preview": "bun run --cwd www preview",
-		"prepublishOnly": "bun run check && bun run www:check && bun run build"
+		"prepublishOnly": "bun run check && bun run www:check"
 	},
 	"dependencies": {
 		"fflate": "^0.8.3",
 		"rijndael-js": "^2.0.0"
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^21.2.4",
+		"@commitlint/config-conventional": "^21.2.4",
+		"@size-limit/preset-small-lib": "^14.3.0",
 		"@stylistic/eslint-plugin": "^5.10.0",
 		"@types/bun": "^1.4.4",
 		"@types/node": "^26.6.5",
@@ -64,9 +71,11 @@
 		"eslint-plugin-testing-library": "^7.16.2",
 		"eslint-plugin-toml": "^1.5.0",
 		"eslint-plugin-yml": "^3.9.0",
+		"lefthook": "^2.2.2",
 		"oxfmt": "^0.74.0",
 		"oxlint": "^1.89.0",
 		"oxlint-tsgolint": "^7.0.2005",
+		"size-limit": "^14.3.0",
 		"typescript": "^7.0.2"
 	},
 	"packageManager": "bun"

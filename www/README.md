@@ -47,7 +47,8 @@ used only by `load` and `save`, with `src/shims/unavailable.ts`.
 
 ## Deployment
 
-`.github/workflows/pages.yaml` of the repository builds the site
+`.github/workflows/pages.yaml` of the repository builds the site,
+adds the API reference under `docs/`
 and publishes it to GitHub Pages when the editor or the library changes.
 Pages have to be enabled in the repository settings
 with GitHub Actions as the source.

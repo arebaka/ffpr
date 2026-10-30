@@ -4,23 +4,44 @@ Notable changes of each release.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.5.0] - 2026-10-29
+## [0.7.0] - 2026-10-30
 
 ### Added
 
-- `unpack` accepts any `Uint8Array`, not only a `Buffer`.
+- [API reference](https://arebaka.github.io/ffpr/docs/) generated from JSDoc
+  with [TypeDoc](https://typedoc.org/), published next to the editor.
+- Bundle size limit of the library, checked with
+  [size-limit](https://github.com/ai/size-limit) before publishing.
+- Test coverage reports on [Codecov](https://codecov.io/gh/arebaka/ffpr).
+- Git hooks with [Lefthook](https://github.com/evilmartians/lefthook):
+  staged files are fixed and formatted before a commit,
+  commitlint checks commit messages, tests run before a push.
+
+## [0.6.0] - 2026-10-29
+
+### Added
+
 - [Browser editor](https://arebaka.github.io/ffpr/) built on the library.
   Its source is in `www`, it is not part of the package.
 
 ### Changed
 
 - **Breaking:** `Value` includes `null`, JSON in a save may contain it.
-- Deflate is done by [fflate](https://github.com/101arrowz/fflate)
-  instead of `node:zlib`, which is not available in browsers.
-  The package has two runtime dependencies now.
 - `unpack` throws an error if the save is not a JSON object.
 - `pack` and `unpack` are faster:
   objects are no longer copied on every level of nesting.
+
+## [0.5.0] - 2026-10-28
+
+### Added
+
+- `unpack` accepts any `Uint8Array`, not only a `Buffer`.
+
+### Changed
+
+- Deflate is done by [fflate](https://github.com/101arrowz/fflate)
+  instead of `node:zlib`, which is not available in browsers.
+  The package has two runtime dependencies now.
 
 ## [0.4.2] - 2026-10-27
 
@@ -108,6 +129,8 @@ versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 First release: `load`, `save`, `unpack` and `pack` for Nintendo Switch saves.
 
+[0.7.0]: https://github.com/arebaka/ffpr/compare/v0.6.0...v0.7.0
+[0.6.0]: https://github.com/arebaka/ffpr/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/arebaka/ffpr/compare/v0.4.2...v0.5.0
 [0.4.2]: https://github.com/arebaka/ffpr/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/arebaka/ffpr/compare/v0.4.0...v0.4.1

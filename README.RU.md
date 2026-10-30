@@ -6,10 +6,11 @@
 
 ![GitHub License](https://img.shields.io/github/license/arebaka/ffpr?style=flat)
 ![GitHub Created At](https://img.shields.io/github/created-at/arebaka/ffpr?style=flat)
-[![Lines of code](https://img.shields.io/endpoint?url=https%3A%2F%2Fghloc.dev%2Fapi%2Farebaka%2Fffpr%2Fbadge&style=flat&label=lines%20of%20code&color=blue)](https://ghloc.dev/arebaka/ffpr)
 ![NPM Version](https://img.shields.io/npm/v/ffpr?style=flat)
 ![NPM Downloads](https://img.shields.io/npm/d18m/ffpr?style=flat)
 ![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/ffpr?style=flat)
+[![Lines of code](https://img.shields.io/endpoint?url=https%3A%2F%2Fghloc.dev%2Fapi%2Farebaka%2Fffpr%2Fbadge&style=flat&label=lines%20of%20code&color=blue)](https://ghloc.dev/arebaka/ffpr)
+[![Codecov](https://img.shields.io/codecov/c/github/arebaka/ffpr?style=flat)](https://codecov.io/gh/arebaka/ffpr)
 
 - Все шесть игр: Final Fantasy I–VI.
 - Сохранения с Nintendo Switch, PC и PlayStation через одно API.
@@ -43,6 +44,9 @@ await save('path/to/save', data, 'pc');
 - `pack(data, type?)` кодирует данные в `Buffer`.
 
 `load` и `unpack` бросают ошибку, если файл не сохранение этой платформы.
+
+Все функции и типы данных сохранений описаны в
+[справочнике API](https://arebaka.github.io/ffpr/docs/).
 
 ## Установка
 

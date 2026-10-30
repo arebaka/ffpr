@@ -31,7 +31,9 @@ export const kindLabels: Record<Kind, string> = {
 	other: 'Save data',
 };
 
-const [state, setState] = createStore<{ file?: Opened }>({});
+const [state, setState] = createStore<{ file: Opened | undefined }>({
+	file: undefined,
+});
 
 export const opened = () => state.file;
 
@@ -133,7 +135,7 @@ export function replace(value: unknown) {
 	}
 	const data = dataSchema.parse(value);
 	const { pictureData } = unwrap(file.data);
-	if (pictureData !== undefined) {
+	if (pictureData instanceof Uint8Array) {
 		data.pictureData = pictureData;
 	}
 	setState({

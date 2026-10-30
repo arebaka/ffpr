@@ -2,24 +2,30 @@
 src
 tests
 www
+docs
+coverage
 
 # Data
 data
 
 # Repository
 .github
-CODE-OF-CONDUCT.md
+CHANGELOG.md
+CODE_OF_CONDUCT.md
 CONTRIBUTING.md
 SECURITY.md
 SUPPORT.md
-MAINTAINERS
+AUTHORS
 
 # Config
+.commitlintrc.yaml
 .editorconfig
 .gitattributes
+.lefthook.yaml
 .oxfmtrc.json
 .oxlintrc.json
 .prettierrc.yaml
+.size-limit.json
 bunfig.toml
 deno.json
 tsconfig.json

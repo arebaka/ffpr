@@ -1,0 +1,9 @@
+[
+	{
+		"name": "pack and unpack",
+		"path": "dist/index.js",
+		"import": "{ pack, unpack }",
+		"ignore": ["node:buffer", "node:crypto", "node:fs", "node:path"],
+		"limit": "10 kb"
+	}
+]

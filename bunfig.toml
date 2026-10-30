@@ -6,3 +6,4 @@ minimumReleaseAge = 259200 # three days
 
 [test]
 root = "tests"
+coverageReporter = ["text", "lcov"]

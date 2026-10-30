@@ -2,7 +2,7 @@
 
 Bug reports, fixes and descriptions of new save data are welcome.
 By taking part in the project you agree to follow the
-[Code of Conduct](CODE-OF-CONDUCT.md).
+[Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Setup
 
@@ -16,14 +16,25 @@ bun install
 
 [Deno](https://deno.com/) is needed only to check the JSR package.
 
+`bun install` also sets up the git hooks from `.lefthook.yaml`:
+
+- before a commit oxlint and oxfmt fix the staged files;
+- commitlint checks the commit message;
+- before a push `bun run check` runs,
+  with the type check and the unit tests of the editor.
+
 ## Scripts
 
-- `bun run check` type-checks and tests the library,
+- `bun run check` type-checks and tests the library, checks its size,
   lints and checks formatting of the whole repository.
 - `bun run lint` runs oxlint, `bun run lint:fix` fixes what it can.
 - `bun run format` checks formatting with oxfmt, `bun run format:write` formats the files.
-- `bun run test` runs the tests of the library.
+- `bun run test` runs the tests of the library,
+  `bun run coverage` also writes a report into `coverage`.
 - `bun run build` compiles `src` into `dist`.
+- `bun run size` builds the library and checks its size
+  against the limit in `.size-limit.json`.
+- `bun run docs:build` generates the API reference into `docs/dist`.
 - `bun run www:dev` starts the editor, `bun run www:build` builds it into `www/dist`.
 - `bun run www:check` checks the editor, the test in a headless Chrome included.
   Publishing runs it together with `bun run check`.
@@ -73,12 +84,21 @@ with `www/src/shims/unavailable.ts`, see `www/vite.config.ts`.
 Its unit tests in `www/tests` use vitest,
 `www/tests/ui.ts` drives the built site in Chrome, see `www/README.md`.
 
+## API reference
+
+TypeDoc generates the reference from JSDoc, configured in `docs/typedoc.json`.
+A warning, like a broken link, fails the build.
+`docs` is a workspace of its own: TypeDoc needs the compiler API,
+which TypeScript 7 does not have, so it runs on TypeScript 6.
+The reference is published together with the editor.
+
 ## Pull requests
 
 - One pull request per change.
 - A bug fix or a new feature comes with a test.
 - `bun run check` passes.
-- Commit messages are short and lowercase, with a type where it fits:
-  `fix: keep pc padding`, `docs: describe bestiary`.
+- Commit messages follow
+  [Conventional Commits](https://www.conventionalcommits.org/),
+  short and lowercase: `fix: keep pc padding`, `docs: describe bestiary`.
 
 Contributions are accepted under the [MIT License](LICENSE).
